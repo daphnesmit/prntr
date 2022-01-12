@@ -150,14 +150,14 @@
     }
 
     function printImage() {
-      prntr('test-01.jpg', 'image')
+      prntr('/test-01.jpg', 'image')
     }
 
     function printImages() {
       prntr({
         printable: [
-          'test-01.jpg',
-          'test-02.jpg'
+          '/test-01.jpg',
+          '/test-02.jpg'
         ],
         type: 'image'
       })
@@ -166,8 +166,8 @@
     function printStyledImages() {
       prntr({
         printable: [
-          'test-01.jpg',
-          'test-02.jpg'
+          '/test-01.jpg',
+          '/test-02.jpg'
         ],
         type: 'image',
         style: 'img { max-width: 400px; margin: 30px; }'
@@ -177,8 +177,8 @@
     function printStyledImagesWithStyleSheet() {
       prntr({
         printable: [
-          'test-01.jpg',
-          'test-02.jpg'
+          '/test-01.jpg',
+          '/test-02.jpg'
         ],
         type: 'image',
         css: 'test.css',
