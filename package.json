@@ -1,10 +1,55 @@
 {
   "name": "print-it",
   "version": "1.0.0",
-  "description": "About",
-  "main": "index.js",
+  "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
+  "types": "dist/index.d.ts",
+  "main": "dist/print-it.cjs.js",
+  "module": "dist/print-it.esm.js",
   "repository": "https://github.com/daphnesmit/print-it",
   "author": "Daphne Smit",
+  "contributors": [
+    "Daphne Smit <daphnesmit1986@gmail.com>"
+  ],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
-  "private": false
+  "sideEffects": false,
+  "scripts": {
+    "postinstall": "preconstruct dev",
+    "build:preconstruct": "preconstruct build",
+    "build:types": "mv ./src/index.d.ts ./dist/index.d.ts",
+    "build": "yarn build:preconstruct && yarn build:types",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx"
+  },
+  "lint-staged": {
+    "**/*.(js|ts|tsx)": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@preconstruct/cli": "^2.1.5",
+    "eslint": "^8.6.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-standard": "^4.1.0",
+    "lint-staged": "^12.1.7"
+  },
+  "keywords": [
+    "print-it",
+    "printit",
+    "printing",
+    "printjs",
+    "print.js",
+    "print-js"
+  ],
+  "dependencies": {
+    "@changesets/cli": "^2.19.0"
+  }
 }
