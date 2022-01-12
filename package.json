@@ -23,7 +23,8 @@
     "build:types": "cp ./src/index.d.ts ./dist/index.d.ts",
     "build": "yarn build:preconstruct && yarn build:types",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx"
+    "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
+    "release": "yarn build && yarn changeset publish"
   },
   "lint-staged": {
     "**/*.(js|ts|tsx)": [
