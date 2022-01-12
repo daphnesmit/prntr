@@ -6,8 +6,8 @@ indent_style=space
 indent_size=2
 
 [{*.sht,*.html,*.shtm,*.shtml,*.ng,*.htm}]
-indent_style=tab
-tab_width=4
+indent_style=space
+tab_width=2
 
 [{phpunit.xml.dist,*.jhm,*.xjb,*.rng,*.wsdl,*.fxml,*.plan,*.pom,*.xslt,*.jrxml,*.ant,*.xul,*.xsl,*.xsd,*.tld,*.jnlp,*.wsdd,*.wadl,*.xml}]
 indent_style=space

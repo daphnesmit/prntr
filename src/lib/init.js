@@ -26,7 +26,7 @@ export default {
       onLoadingEnd: undefined,
       onPrintDialogClose: () => {},
       onIncompatibleBrowser: () => {},
-      frameId: 'printJS',
+      frameId: 'printIt',
       printableElement: null,
       documentTitle: 'Document',
       targetStyle: ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height'],
@@ -50,7 +50,7 @@ export default {
     // Check if a printable document or object was supplied
     const args = arguments[0];
     if (args === undefined) {
-      throw new Error('printJS expects at least 1 attribute.');
+      throw new Error('printIt expects at least 1 attribute.');
     }
 
     // Process parameters
@@ -135,7 +135,7 @@ export default {
         // Check browser support for pdf and if not supported we will just open the pdf file instead
         if (Browser.isIE()) {
           try {
-            console.info('Print.js doesn\'t support PDF printing in Internet Explorer.');
+            console.info('Print It! doesn\'t support PDF printing in Internet Explorer.');
             const win = window.open(params.fallbackPrintable, '_blank');
             win.focus();
             params.onIncompatibleBrowser();

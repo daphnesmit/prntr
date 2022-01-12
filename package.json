@@ -16,9 +16,11 @@
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
+    "dev": "vite",
     "postinstall": "preconstruct dev",
+    "watch": "preconstruct watch",
     "build:preconstruct": "preconstruct build",
-    "build:types": "mv ./src/index.d.ts ./dist/index.d.ts",
+    "build:types": "cp ./src/index.d.ts ./dist/index.d.ts",
     "build": "yarn build:preconstruct && yarn build:types",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx"
@@ -39,7 +41,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-standard": "^4.1.0",
-    "lint-staged": "^12.1.7"
+    "lint-staged": "^12.1.7",
+    "vite": "^2.7.2"
   },
   "keywords": [
     "print-it",

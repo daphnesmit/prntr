@@ -20,7 +20,7 @@ You can download the latest version of Print It! from [NPM](https://www.npmjs.co
 To install via npm:
 
 ```bash
-npm install print-it --save
+yarn add print-it --save
 ```
 
 To install via yarn:
@@ -70,7 +70,20 @@ Please make your commits in logical sections with clear commit messages.
 
 ##### Start developing using the example
 
-TODO
+Open 2 terminal tabs.
+
+In the first tab run:
+```bash
+yarn
+yarn watch
+```
+
+In the second tab run:
+```bash
+yarn dev
+```
+
+Open up [http://localhost:3000/](http://localhost:3000/) in your browser!
 
 ##### Tests
 

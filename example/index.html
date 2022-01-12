@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Print It!</title>
+  <script type="module" src="/dist/print-it.esm.js"></script>
+  <script nomodule src="/dist/print-it.cjs.js"></script>
+  <script type="text/javascript">
+    function printPdf() {
+      printIt('/test.pdf')
+    }
+
+    function printPdfBase64() {
+      fetch('/base64.txt').then(function (response) {
+        response.text().then(function (base64) {
+          printIt({
+            printable: base64,
+            type: 'pdf',
+            base64: true
+          })
+        })
+      })
+    }
+
+    function printHtml() {
+      printIt({
+        printable: 'test',
+        type: 'html'
+      })
+    }
+
+    function printRawHtml() {
+      printIt({
+        printable: `<h1>Print It! Raw HTML Print Test</h1>
+      <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+        type: 'raw-html',
+        style: '.blueText {color:blue;}'
+      })
+    }
+
+    function printHtmlCustomStyle() {
+      const style = '@page { margin-top: 400px } @media print { h1 { color: blue } }'
+
+      printIt({
+        printable: 'test',
+        type: 'html',
+        style: style,
+        scanStyles: false
+      })
+    }
+
+    function printHtmlCss() {
+      printIt({
+        printable: 'test',
+        type: 'html',
+        css: 'test.css',
+        scanStyles: false
+      })
+    }
+
+    function printIton() {
+      let data = []
+      for (let i = 0; i <= 1000; i++) {
+        data.push({
+          test1: createRandomString(),
+          test2: createRandomString()
+        })
+      }
+
+      printIt({
+        printable: data,
+        properties: [
+          {
+            field: 'test1',
+            displayName: 'test 1',
+            columnSize: 1
+          },
+          {
+            field: 'test2',
+            displayName: 'test 2',
+            columnSize: 4
+          }
+        ],
+        type: 'json',
+        header: 'JSON Print Test',
+        documentTitle: 'Print It! JSON Test'
+      })
+    }
+
+    function printStyledJson() {
+      let data = [
+        {
+          test1: 'Test1 string',
+          test2: 'Test2 string'
+        },
+        {
+          test1: 'more Test1 string',
+          test2: 'more Test2 string'
+        }
+      ]
+
+      printIt({
+        printable: data,
+        properties: ['test1', 'test2'],
+        type: 'json',
+        gridStyle: 'border: 2px solid #3971A5;',
+        gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
+      })
+    }
+
+    function printNestedJson() {
+      let data = []
+      for (let i = 0; i <= 100; i++) {
+        data.push({
+          test1: createRandomString(),
+          test2: {
+            a: createRandomString()
+          }
+        })
+      }
+
+      printIt({
+        printable: data,
+        properties: [
+          {
+            field: 'test1',
+            displayName: 'test 1',
+            columnSize: 1
+          },
+          {
+            field: 'test2.a',
+            displayName: 'test 2 - a',
+            columnSize: 4
+          }
+        ],
+        type: 'json'
+      })
+    }
+
+    function createRandomString() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    }
+
+    function printImage() {
+      printIt('test-01.jpg', 'image')
+    }
+
+    function printImages() {
+      printIt({
+        printable: [
+          'test-01.jpg',
+          'test-02.jpg'
+        ],
+        type: 'image'
+      })
+    }
+
+    function printStyledImages() {
+      printIt({
+        printable: [
+          'test-01.jpg',
+          'test-02.jpg'
+        ],
+        type: 'image',
+        style: 'img { max-width: 400px; margin: 30px; }'
+      })
+    }
+
+    function printStyledImagesWithStyleSheet() {
+      printIt({
+        printable: [
+          'test-01.jpg',
+          'test-02.jpg'
+        ],
+        type: 'image',
+        css: 'test.css',
+      })
+    }
+
+    function printExternalImages() {
+      printIt({
+        printable: [
+          'https://printIt.crabbly.com/images/print-01-highres.jpg',
+          'https://printIt.crabbly.com/images/print-02-highres.jpg',
+          'https://printIt.crabbly.com/images/print-03-highres.jpg'
+        ],
+        type: 'image',
+      })
+    }
+  </script>
+</head>
+<body>
+  <section id="test" class="container">
+    <h1>Print It! Test Page</h1>
+    <p>
+      <button onClick='printPdf();'>
+        Print PDF
+      </button>
+      <button onClick='printPdfBase64();'>
+        Print base64 PDF
+      </button>
+    </p>
+    <p>
+      <button onClick='printHtml();'>
+        Print HTML
+      </button>
+      <button onClick='printHtmlCustomStyle();'>
+        Print HTML with custom style
+      </button>
+      <button onClick='printHtmlCss();'>
+        Print HTML with custom css
+      </button>
+      <button onClick='printRawHtml();'>
+        Print Raw HTML
+      </button>
+    </p>
+    <p>
+      <button onClick='printIton();'>
+        Print JSON
+      </button>
+      <button onClick='printStyledJson();'>
+        Print Styled JSON
+      </button>
+      <button onClick='printNestedJson();'>
+        Print Nested JSON
+      </button>
+    </p>
+    <p>
+      <button onClick='printImage();'>
+        Print Image
+      </button>
+      <button onClick='printImages();'>
+        Print Multiple Images
+      </button>
+      <button onClick='printStyledImages();'>
+        Print Multiple Images Passing Custom Style
+      </button>
+      <button onClick='printStyledImagesWithStyleSheet();'>
+        Print Multiple Images Passing a Style Sheet
+      </button>
+      <button onClick='printExternalImages();'>
+        Print Multiple External Images
+      </button>
+    </p>
+  </section>
+  <script type="module" src="/example/main.js"></script>
+</body>
+</html>
