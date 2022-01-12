@@ -1,0 +1,10 @@
+{
+  "name": "print-it",
+  "version": "1.0.0",
+  "description": "About",
+  "main": "index.js",
+  "repository": "https://github.com/daphnesmit/print-it",
+  "author": "Daphne Smit",
+  "license": "MIT",
+  "private": false
+}
