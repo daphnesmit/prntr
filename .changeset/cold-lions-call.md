@@ -2,4 +2,4 @@
 "prntr": patch
 ---
 
-Package reamed to prntr
+Package renamed to prntr
