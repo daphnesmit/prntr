@@ -17,7 +17,6 @@
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
-    "postinstall": "preconstruct dev",
     "watch": "preconstruct watch",
     "build:preconstruct": "preconstruct build",
     "build:types": "cp ./src/index.d.ts ./dist/index.d.ts",
