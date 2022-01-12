@@ -1,8 +1,7 @@
-# Print It!
-
+# Prntr (Printer)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![npm](https://img.shields.io/npm/v/print-it.svg)](https://www.npmjs.com/package/print-it)
+[![npm](https://img.shields.io/npm/v/prntr.svg)](https://www.npmjs.com/package/prntr)
 
 A tiny javascript library to help printing from the web.
 
@@ -15,24 +14,24 @@ A tiny javascript library to help printing from the web.
 
 ## Installation
 
-You can download the latest version of Print It! from [NPM](https://www.npmjs.com/package/print-it)
+You can download the latest version of Prntr from [NPM](https://www.npmjs.com/package/prntr)
 
 To install via npm:
 
 ```bash
-yarn add print-it --save
+yarn add prntr --save
 ```
 
 To install via yarn:
 
 ```bash
-yarn add print-it
+yarn add prntr
 ```
 
 Import the library into your project:
 
 ```js
-import printIt from 'print-it'
+import printIt from 'prntr'
 ```
 
 ## Documentation
@@ -40,17 +39,17 @@ import printIt from 'print-it'
 TODO
 <!-- Insert netlify site-->
 
-## Contributing to Print It!
+## Contributing to Prntr
 
-Contributions to Print It! are greatly welcomed and encouraged.
+Contributions to Prntr are greatly welcomed and encouraged.
 
 ##### Using issues
 
-The [issue tracker](https://github.com/daphnesmit/print-it/issues) is the preferred channel for reporting bugs, requesting new features and submitting pull requests.
+The [issue tracker](https://github.com/daphnesmit/prntr/issues) is the preferred channel for reporting bugs, requesting new features and submitting pull requests.
 
 Keep in mind that we would like to keep this a lightweight library.
 
-Please do not use the issues channel for support requests. For help with using Print It! Please ask questions on Stack Overflow and use the tag `print-it`.
+Please do not use the issues channel for support requests. For help with using Prntr Please ask questions on Stack Overflow and use the tag `prntr`.
 
 ##### Reporting bugs
 
@@ -83,7 +82,7 @@ In the second tab run:
 yarn dev
 ```
 
-Open up [http://localhost:3000/](http://localhost:3000/) in your browser!
+Open up [http://localhost:3000/example/index.html](http://localhost:3000/example/index.html) in your browser!
 
 ##### Tests
 
@@ -91,4 +90,4 @@ The library is written following the [Javascript Standard](https://standardjs.co
 
 ## License
 
-Print It! is available under the [MIT license](https://github.com/daphnesmit/print-it/blob/master/LICENSE).
+Prntr is available under the [MIT license](https://github.com/daphnesmit/prntr/blob/master/LICENSE).

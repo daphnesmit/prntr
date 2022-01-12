@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Print It!</title>
-  <script type="module" src="/dist/print-it.esm.js"></script>
-  <script nomodule src="/dist/print-it.cjs.js"></script>
+  <title>Prntr</title>
+  <script type="module" src="/dist/prntr.esm.js"></script>
+  <script nomodule src="/dist/prntr.cjs.js"></script>
   <script type="text/javascript">
     function printPdf() {
       printIt('/test.pdf')
@@ -32,7 +32,7 @@
 
     function printRawHtml() {
       printIt({
-        printable: `<h1>Print It! Raw HTML Print Test</h1>
+        printable: `<h1>Prntr Raw HTML Print Test</h1>
       <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
         type: 'raw-html',
@@ -85,7 +85,7 @@
         ],
         type: 'json',
         header: 'JSON Print Test',
-        documentTitle: 'Print It! JSON Test'
+        documentTitle: 'Prntr JSON Test'
       })
     }
 
@@ -199,7 +199,7 @@
 </head>
 <body>
   <section id="test" class="container">
-    <h1>Print It! Test Page</h1>
+    <h1>Prntr Test Page</h1>
     <p>
       <button onClick='printPdf();'>
         Print PDF

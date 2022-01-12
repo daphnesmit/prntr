@@ -1,11 +1,11 @@
 {
-  "name": "print-it",
+  "name": "prntr",
   "version": "1.0.0",
   "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
   "types": "dist/index.d.ts",
-  "main": "dist/print-it.cjs.js",
-  "module": "dist/print-it.esm.js",
-  "repository": "https://github.com/daphnesmit/print-it",
+  "main": "dist/prntr.cjs.js",
+  "module": "dist/prntr.esm.js",
+  "repository": "https://github.com/daphnesmit/prntr",
   "author": "Daphne Smit",
   "contributors": [
     "Daphne Smit <daphnesmit1986@gmail.com>"
@@ -46,7 +46,7 @@
     "vite": "^2.7.2"
   },
   "keywords": [
-    "print-it",
+    "prntr",
     "printit",
     "printing",
     "printjs",
