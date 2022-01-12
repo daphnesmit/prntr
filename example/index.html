@@ -8,13 +8,13 @@
   <script nomodule src="/dist/prntr.cjs.js"></script>
   <script type="text/javascript">
     function printPdf() {
-      printIt('/test.pdf')
+      prntr('/test.pdf')
     }
 
     function printPdfBase64() {
       fetch('/base64.txt').then(function (response) {
         response.text().then(function (base64) {
-          printIt({
+          prntr({
             printable: base64,
             type: 'pdf',
             base64: true
@@ -24,14 +24,14 @@
     }
 
     function printHtml() {
-      printIt({
+      prntr({
         printable: 'test',
         type: 'html'
       })
     }
 
     function printRawHtml() {
-      printIt({
+      prntr({
         printable: `<h1>Prntr Raw HTML Print Test</h1>
       <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
@@ -43,7 +43,7 @@
     function printHtmlCustomStyle() {
       const style = '@page { margin-top: 400px } @media print { h1 { color: blue } }'
 
-      printIt({
+      prntr({
         printable: 'test',
         type: 'html',
         style: style,
@@ -52,7 +52,7 @@
     }
 
     function printHtmlCss() {
-      printIt({
+      prntr({
         printable: 'test',
         type: 'html',
         css: 'test.css',
@@ -60,7 +60,7 @@
       })
     }
 
-    function printIton() {
+    function prntron() {
       let data = []
       for (let i = 0; i <= 1000; i++) {
         data.push({
@@ -69,7 +69,7 @@
         })
       }
 
-      printIt({
+      prntr({
         printable: data,
         properties: [
           {
@@ -101,7 +101,7 @@
         }
       ]
 
-      printIt({
+      prntr({
         printable: data,
         properties: ['test1', 'test2'],
         type: 'json',
@@ -121,7 +121,7 @@
         })
       }
 
-      printIt({
+      prntr({
         printable: data,
         properties: [
           {
@@ -150,11 +150,11 @@
     }
 
     function printImage() {
-      printIt('test-01.jpg', 'image')
+      prntr('test-01.jpg', 'image')
     }
 
     function printImages() {
-      printIt({
+      prntr({
         printable: [
           'test-01.jpg',
           'test-02.jpg'
@@ -164,7 +164,7 @@
     }
 
     function printStyledImages() {
-      printIt({
+      prntr({
         printable: [
           'test-01.jpg',
           'test-02.jpg'
@@ -175,7 +175,7 @@
     }
 
     function printStyledImagesWithStyleSheet() {
-      printIt({
+      prntr({
         printable: [
           'test-01.jpg',
           'test-02.jpg'
@@ -186,11 +186,11 @@
     }
 
     function printExternalImages() {
-      printIt({
+      prntr({
         printable: [
-          'https://printIt.crabbly.com/images/print-01-highres.jpg',
-          'https://printIt.crabbly.com/images/print-02-highres.jpg',
-          'https://printIt.crabbly.com/images/print-03-highres.jpg'
+          'https://prntr.crabbly.com/images/print-01-highres.jpg',
+          'https://prntr.crabbly.com/images/print-02-highres.jpg',
+          'https://prntr.crabbly.com/images/print-03-highres.jpg'
         ],
         type: 'image',
       })
@@ -223,7 +223,7 @@
       </button>
     </p>
     <p>
-      <button onClick='printIton();'>
+      <button onClick='prntron();'>
         Print JSON
       </button>
       <button onClick='printStyledJson();'>

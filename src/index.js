@@ -1,9 +1,9 @@
 import print from './lib/init';
 
-const printIt = print.init;
+const prntr = print.init;
 
 if (typeof window !== 'undefined') {
-  window.printIt = printIt;
+  window.prntr = prntr;
 }
 
-export default printIt;
+export default prntr;

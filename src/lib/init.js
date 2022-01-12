@@ -26,7 +26,7 @@ export default {
       onLoadingEnd: undefined,
       onPrintDialogClose: () => {},
       onIncompatibleBrowser: () => {},
-      frameId: 'printIt',
+      frameId: 'prntr',
       printableElement: null,
       documentTitle: 'Document',
       targetStyle: ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height'],
@@ -50,7 +50,7 @@ export default {
     // Check if a printable document or object was supplied
     const args = arguments[0];
     if (args === undefined) {
-      throw new Error('printIt expects at least 1 attribute.');
+      throw new Error('prntr expects at least 1 attribute.');
     }
 
     // Process parameters

@@ -35,7 +35,7 @@ yarn add prntr
 Import the library into your project:
 
 ```js
-import printIt from 'prntr'
+import prntr from 'prntr'
 ```
 
 ## Documentation

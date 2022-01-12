@@ -1,7 +1,7 @@
-declare function printIt(configuration: printIt.Configuration): void;
-declare function printIt(source: string, type?: printIt.PrintTypes): void;
+declare function prntr(configuration: prntr.Configuration): void;
+declare function prntr(source: string, type?: prntr.PrintTypes): void;
 
-declare namespace printIt {
+declare namespace prntr {
   type PrintTypes = 'pdf' | 'html' | 'image' | 'json' | 'raw-html';
 
   interface Configuration {
@@ -42,4 +42,4 @@ declare namespace printIt {
   }
 }
 
-export = printIt;
+export = prntr;
