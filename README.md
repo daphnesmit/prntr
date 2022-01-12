@@ -1,4 +1,6 @@
 # Prntr (Printer)
+
+![Github Build Status](https://github.com/daphnesmit/prntr/actions/workflows/release.yml/badge.svg)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 [![npm](https://img.shields.io/npm/v/prntr.svg)](https://www.npmjs.com/package/prntr)
@@ -6,6 +8,8 @@
 A tiny javascript library to help printing from the web.
 
 [Print.js](https://github.com/crabbly/print.js) but modern and maintained.
+
+*This initial version is a direct copy of Print.js but will be transformed into a type safe package.*
 
 
 🙏 Thank you [Rodrigo](https://github.com/crabbly) for all your hard work!
@@ -87,6 +91,12 @@ Open up [http://localhost:3000/example/index.html](http://localhost:3000/example
 ##### Tests
 
 The library is written following the [Javascript Standard](https://standardjs.com) code style. When running tests, we will also test for any style issues or warnings using Eslint..
+
+##### Building
+This package is using [preconstruct](https://preconstruct.tools/) to build our code painlessly with a zero config script.
+
+##### Releasing
+This package is using [changesets](https://github.com/changesets/changesets) to release the right package versions.
 
 ## License
 
