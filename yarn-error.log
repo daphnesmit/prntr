@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/daphne/Sites/print-it/package.json: Unexpected token } in JSON at position 507
+  SyntaxError: /Users/daphne/Sites/prntr/package.json: Unexpected token } in JSON at position 507
       at JSON.parse (<anonymous>)
       at /Users/daphne/.nvm/versions/node/v14.17.1/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -23,11 +23,11 @@ Trace:
 
 npm manifest: 
   {
-    "name": "print-it",
+    "name": "prntr",
     "version": "1.0.0",
     "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
     "main": "index.js",
-    "repository": "https://github.com/daphnesmit/print-it",
+    "repository": "https://github.com/daphnesmit/prntr",
     "author": "Daphne Smit",
     "contributors": [
       "Daphne Smit <daphnesmit1986@gmail.com>"

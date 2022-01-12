@@ -135,7 +135,7 @@ export default {
         // Check browser support for pdf and if not supported we will just open the pdf file instead
         if (Browser.isIE()) {
           try {
-            console.info('Print It! doesn\'t support PDF printing in Internet Explorer.');
+            console.info('Prntr doesn\'t support PDF printing in Internet Explorer.');
             const win = window.open(params.fallbackPrintable, '_blank');
             win.focus();
             params.onIncompatibleBrowser();
