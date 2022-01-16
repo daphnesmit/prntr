@@ -23,7 +23,7 @@ You can download the latest version of Prntr from [NPM](https://www.npmjs.com/pa
 To install via npm:
 
 ```bash
-yarn add prntr --save
+npm i prntr --save
 ```
 
 To install via yarn:
