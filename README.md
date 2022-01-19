@@ -1,13 +1,18 @@
 # Prntr (Printer)
 
 ![Github Build Status](https://github.com/daphnesmit/prntr/actions/workflows/release.yml/badge.svg)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![npm](https://img.shields.io/npm/v/prntr.svg)](https://www.npmjs.com/package/prntr)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?color=lightgrey)](LICENSE)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?color=yellow)](http://standardjs.com/)
+[![npm](https://img.shields.io/npm/v/prntr.svg?color=red)](https://www.npmjs.com/package/prntr)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/prntr?color=success)](https://bundlephobia.com/package/prntr)
 
 A tiny javascript library to help printing from the web.
 
 [Print.js](https://github.com/crabbly/print.js) but modern and maintained.
+
+
+**Only 3.5kB gzipped!**
+
 
 *This initial version is a direct copy of Print.js but will be transformed into a type safe package.*
 
