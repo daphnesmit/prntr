@@ -1,32 +1,29 @@
-
 export type PrintTypes = 'pdf' | 'html' | 'image' | 'json' | 'raw-html';
 export interface Config {
-  printable: any;
-  fallbackPrintable?: string;
+  printable: string | null; // FIXME
+  fallbackPrintable?: string | null;
   type?: PrintTypes;
   documentTitle?: string;
-  header?: any;
+  header?: undefined; // FIXME
   headerStyle?: string;
   maxWidth?: number;
+  properties?: undefined; // FIXME
   targetStyle?: string | string[];
   targetStyles?: string | string[];
-  properties?: any;
   gridHeaderStyle?: string;
   gridStyle?: string;
-  showModal?: boolean;
-  onLoadingStart?: () => void;
-  onLoadingEnd?: () => void;
-  modalMessage?: string;
   frameId?: string;
   ignoreElements?: string | string[];
   repeatTableHeader?: boolean;
   css?: string | string[];
   style?: string;
   scanStyles?: boolean;
-  onError?: (error: any, xmlHttpRequest?: XMLHttpRequest) => void;
+  base64?: boolean;
+  onError?: (error: string, xmlHttpRequest?: XMLHttpRequest) => void;
+  onLoadingStart?: () => void;
+  onLoadingEnd?: () => void;
   onPrintDialogClose?: () => void;
   onIncompatibleBrowser?: () => void;
-  base64?: boolean;
 
   // Deprecated
   onPdfOpen?: () => void;
@@ -35,4 +32,10 @@ export interface Config {
   honorMarginPadding?: boolean;
   honorColor?: boolean;
   imageStyle?: string;
+}
+export interface Params extends Config {
+  printable: string
+  // printableElement?: null
+  type: PrintTypes;
+  frameId: string;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,7 @@
   <script type="module" src="/dist/prntr.esm.js"></script>
   <script nomodule src="/dist/prntr.cjs.js"></script>
   <script type="text/javascript">
-    function printPdf() {
+    function printPdf(e) {
       prntr('/test.pdf')
     }
 
@@ -197,9 +198,11 @@
     }
   </script>
 </head>
+
 <body>
   <section id="test" class="container">
     <h1>Prntr Test Page</h1>
+    <h2>PDF</h2>
     <p>
       <button onClick='printPdf();'>
         Print PDF
@@ -208,6 +211,7 @@
         Print base64 PDF
       </button>
     </p>
+    <h2>HTML</h2>
     <p>
       <button onClick='printHtml();'>
         Print HTML
@@ -222,6 +226,7 @@
         Print Raw HTML
       </button>
     </p>
+    <h2>JSON</h2>
     <p>
       <button onClick='prntron();'>
         Print JSON
@@ -233,6 +238,7 @@
         Print Nested JSON
       </button>
     </p>
+    <h2>Image</h2>
     <p>
       <button onClick='printImage();'>
         Print Image
@@ -253,4 +259,5 @@
   </section>
   <script type="module" src="/example/main.js"></script>
 </body>
+
 </html>

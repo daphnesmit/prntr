@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "es2019",
@@ -21,7 +21,7 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true
   },

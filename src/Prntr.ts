@@ -1,52 +1,14 @@
+import { pdf } from "./pdf";
+import { Config, Params, PrintTypes } from "./types";
 import Browser from "./utils/browser";
 
-export type PrintTypes = 'pdf' | 'html' | 'image' | 'json' | 'raw-html';
-export interface Config {
-  printable: string | null; // FIXME
-  fallbackPrintable?: string | null;
-  type?: PrintTypes;
-  documentTitle?: string;
-  header?: undefined; // FIXME
-  headerStyle?: string;
-  maxWidth?: number;
-  properties?: undefined; // FIXME
-  targetStyle?: string | string[];
-  targetStyles?: string | string[];
-  gridHeaderStyle?: string;
-  gridStyle?: string;
-  frameId?: string;
-  ignoreElements?: string | string[];
-  repeatTableHeader?: boolean;
-  css?: string | string[];
-  style?: string;
-  scanStyles?: boolean;
-  base64?: boolean;
-  onError?: (error: Error, xmlHttpRequest?: XMLHttpRequest) => void;
-  onLoadingStart?: () => void;
-  onLoadingEnd?: () => void;
-  onPrintDialogClose?: () => void;
-  onIncompatibleBrowser?: () => void;
-
-  // Deprecated
-  onPdfOpen?: () => void;
-  font?: string;
-  font_size?: string;
-  honorMarginPadding?: boolean;
-  honorColor?: boolean;
-  imageStyle?: string;
-}
-type PrntrArguments = [config: string | Config, type?: PrintTypes]
-
-interface Params extends Config {
-  printableElement?: null
-  frameId: string;
-}
+export type PrntrArguments = [config: string | Config, type?: PrintTypes]
 
 class Prntr {
   private printTypes: string[] = ['pdf', 'html', 'image', 'json', 'raw-html'];
   private params: Params = {
-    printable: null,
-    printableElement: undefined,
+    printable: '',
+    // printableElement: undefined,
     fallbackPrintable: undefined,
     type: 'pdf',
     documentTitle: 'Document',
@@ -61,7 +23,7 @@ class Prntr {
     frameId: 'prntr',
     ignoreElements: [],
     repeatTableHeader: true,
-    onError: (error: Error) => { throw error; },
+    onError: (error: string) => { throw new Error(error) },
     onLoadingStart: undefined,
     onLoadingEnd: undefined,
     onPrintDialogClose: undefined,
@@ -103,7 +65,7 @@ class Prntr {
         this.params.type = type || this.params.type;
         break;
       case 'object':
-        this.params.printable = args.printable;
+        if(args.printable) this.params.printable = args.printable;
         this.params.fallbackPrintable = typeof args.fallbackPrintable !== 'undefined'
           ? args.fallbackPrintable
           : this.params.printable;
@@ -207,26 +169,22 @@ class Prntr {
             onLoadingEnd?.();
           }
         } else {
-          Pdf.print(this.params, printFrame);
+          pdf(this.params, printFrame);
         }
         break;
-      case 'image':
-        Image.print(this.params, printFrame);
-        break;
-      case 'html':
-        Html.print(this.params, printFrame);
-        break;
-      case 'raw-html':
-        RawHtml.print(this.params, printFrame);
-        break;
-      case 'json':
-        Json.print(this.params, printFrame);
-        break;
+      // case 'image':
+      //   Image.print(this.params, printFrame);
+      //   break;
+      // case 'html':
+      //   Html.print(this.params, printFrame);
+      //   break;
+      // case 'raw-html':
+      //   RawHtml.print(this.params, printFrame);
+      //   break;
+      // case 'json':
+      //   Json.print(this.params, printFrame);
+        // break;
     }
   }
 }
-
-const Printer = new Prntr({ printable: 'hoi', type: 'html' })
-const Printer2 = new Prntr('hoi', 'html')
-
 export default Prntr

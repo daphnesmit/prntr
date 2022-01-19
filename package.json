@@ -2,7 +2,7 @@
   "name": "prntr",
   "version": "1.0.2",
   "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
-  "types": "dist/index.d.ts",
+  "types": "dist/prntr.cjs.d.ts",
   "main": "dist/prntr.cjs.js",
   "module": "dist/prntr.esm.js",
   "repository": "https://github.com/daphnesmit/prntr",
@@ -19,7 +19,7 @@
     "dev": "vite",
     "watch": "preconstruct watch",
     "build:preconstruct": "preconstruct build",
-    "build:types": "cp ./src/index.d.ts ./dist/index.d.ts",
+    "build:types": "tsc",
     "build": "yarn build:preconstruct && yarn build:types",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
@@ -42,6 +42,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-standard": "^4.1.0",
     "lint-staged": "^12.1.7",
+    "typescript": "^4.5.4",
     "vite": "^2.7.2"
   },
   "keywords": [
