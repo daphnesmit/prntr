@@ -34,7 +34,7 @@ export interface Config {
   imageStyle?: string;
 }
 export interface Params extends Config {
-  printable: string
+  printable: string;
   // printableElement?: null
   type: PrintTypes;
   frameId: string;

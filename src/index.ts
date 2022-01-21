@@ -1,7 +1,7 @@
-import Prntr, { PrntrArguments } from './Prntr'
+import Prntr, { PrntrArguments } from './Prntr';
 
 function prntr(...args: PrntrArguments) {
-  return new Prntr(...args)
+  return new Prntr(...args);
 }
 
 if (typeof window !== 'undefined') {
@@ -9,4 +9,4 @@ if (typeof window !== 'undefined') {
   window.prntr = prntr;
 }
 
-export default prntr
+export default prntr;

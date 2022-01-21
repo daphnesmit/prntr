@@ -1,6 +1,7 @@
-import { pdf } from "./pdf";
-import { Config, Params, PrintTypes } from "./types";
-import Browser from "./utils/browser";
+import { html } from './html';
+import { pdf } from './pdf';
+import { Config, Params, PrintTypes } from './types';
+import Browser from './utils/browser';
 
 export type PrntrArguments = [config: string | Config, type?: PrintTypes]
 
@@ -23,7 +24,7 @@ class Prntr {
     frameId: 'prntr',
     ignoreElements: [],
     repeatTableHeader: true,
-    onError: (error: string) => { throw new Error(error) },
+    onError: (error: string) => { throw new Error(error); },
     onLoadingStart: undefined,
     onLoadingEnd: undefined,
     onPrintDialogClose: undefined,
@@ -32,7 +33,7 @@ class Prntr {
     style: undefined,
     scanStyles: true,
     base64: false,
-  }
+  };
 
   // Deprecated
   // onPdfOpen: undefined
@@ -43,7 +44,6 @@ class Prntr {
   // imageStyle: 'max-width: 100%;'
 
   constructor(...params: PrntrArguments) {
-
     // Check if a printable document or object was supplied
     const args = params[0];
     if (!args) {
@@ -51,10 +51,10 @@ class Prntr {
     }
 
     // Process parameters
-    this.processParams(args, params[1])
+    this.processParams(args, params[1]);
 
     // Start
-    this.start()
+    this.start();
   }
 
   private processParams(args: PrntrArguments[0], type?: PrntrArguments[1]) {
@@ -65,7 +65,7 @@ class Prntr {
         this.params.type = type || this.params.type;
         break;
       case 'object':
-        if(args.printable) this.params.printable = args.printable;
+        if (args.printable) this.params.printable = args.printable;
         this.params.fallbackPrintable = typeof args.fallbackPrintable !== 'undefined'
           ? args.fallbackPrintable
           : this.params.printable;
@@ -74,16 +74,15 @@ class Prntr {
           : this.params.fallbackPrintable;
 
         Object.keys(this.params).reduce((all, k) => {
-          if (k === 'printable' || k === 'fallbackPrintable') return all
-          //@ts-ignore
-          if (typeof args[k as keyof Config] !== 'undefined') all[k] = args[k as keyof Config]
-          return all
-        }, this.params)
+          if (k === 'printable' || k === 'fallbackPrintable') return all;
+          // @ts-ignore
+          if (typeof args[k as keyof Config] !== 'undefined') all[k] = args[k as keyof Config];
+          return all;
+        }, this.params);
 
         break;
       default:
         throw new Error('Unexpected argument type! Expected "string" or "object", got ' + typeof args);
-
     }
 
     // Validate printable
@@ -92,14 +91,17 @@ class Prntr {
     }
 
     // Validate type
-    if (!this.params.type || typeof this.params.type !== 'string' || this.printTypes.indexOf(this.params.type.toLowerCase()) === -1) {
+    if (
+      !this.params.type ||
+      typeof this.params.type !== 'string' ||
+      this.printTypes.indexOf(this.params.type.toLowerCase()) === -1
+    ) {
       throw new Error('Invalid print type. Available types are: pdf, html, image and json.');
     }
-
   }
 
   private getPrintFrame() {
-    const { frameId, type, documentTitle, css } = this.params
+    const { frameId, type, documentTitle, css } = this.params;
 
     // Create a new iframe for the print job
     const printFrame = document.createElement('iframe');
@@ -125,7 +127,7 @@ class Prntr {
 
       // Attach css files
       if (css) {
-        let styles: string[] = !Array.isArray(css) ? [css] : css
+        const styles: string[] = !Array.isArray(css) ? [css] : css;
 
         // Create link tags for each css file
         styles.forEach(file => {
@@ -135,11 +137,19 @@ class Prntr {
 
       printFrame.srcdoc += '</head><body></body></html>';
     }
-    return printFrame
+    return printFrame;
   }
 
   private start() {
-    const { onLoadingStart, frameId, type, fallbackPrintable, onIncompatibleBrowser, onError, onLoadingEnd } = this.params
+    const {
+      frameId,
+      type,
+      fallbackPrintable,
+      onIncompatibleBrowser,
+      onError,
+      onLoadingStart,
+      onLoadingEnd,
+    } = this.params;
 
     // Check for a print start hook function
     onLoadingStart?.();
@@ -150,7 +160,7 @@ class Prntr {
     if (usedFrame) usedFrame?.parentNode?.removeChild(usedFrame);
 
     // Create a new iframe for the print job
-    const printFrame = this.getPrintFrame()
+    const printFrame = this.getPrintFrame();
 
     // Check printable type
     switch (type) {
@@ -159,7 +169,7 @@ class Prntr {
         if (Browser.isIE()) {
           try {
             console.info('Prntr doesn\'t support PDF printing in Internet Explorer.');
-            if (!fallbackPrintable) throw new Error('Prntr can not print fallbackPrintable')
+            if (!fallbackPrintable) throw new Error('Prntr can not print fallbackPrintable');
             const win = window.open(fallbackPrintable, '_blank');
             win?.focus();
             onIncompatibleBrowser?.();
@@ -175,9 +185,9 @@ class Prntr {
       // case 'image':
       //   Image.print(this.params, printFrame);
       //   break;
-      // case 'html':
-      //   Html.print(this.params, printFrame);
-      //   break;
+      case 'html':
+        html(this.params, printFrame);
+        break;
       // case 'raw-html':
       //   RawHtml.print(this.params, printFrame);
       //   break;
@@ -187,4 +197,4 @@ class Prntr {
     }
   }
 }
-export default Prntr
+export default Prntr;

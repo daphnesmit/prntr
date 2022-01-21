@@ -7,7 +7,7 @@ const Browser = {
   // Internet Explorer 6-11
   isIE: () => {
     // @ts-ignore
-    return typeof window !== 'undefined' && !!window.MSInputMethodContext || !!document.documentMode;
+    return typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode;
   },
   // Edge 20+
   isEdge: () => {

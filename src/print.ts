@@ -2,8 +2,6 @@ import { Params } from './types';
 import Browser from './utils/browser';
 import { cleanUp } from './utils/functions';
 
-
-
 function performPrint(iframeElement: HTMLIFrameElement, params: Params) {
   try {
     iframeElement.focus();
@@ -34,9 +32,8 @@ function performPrint(iframeElement: HTMLIFrameElement, params: Params) {
 
 function loadIframeImages(images: HTMLImageElement[]) {
   const promises = images.map(image => {
-    if (image.src && image.src !== window.location.href) {
-      return loadIframeImage(image);
-    }
+    if (!image.src || image.src === window.location.href) return undefined;
+    return loadIframeImage(image);
   });
 
   return Promise.all(promises);
@@ -54,16 +51,15 @@ function loadIframeImage(image: HTMLImageElement) {
 }
 
 const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) => {
-
-  const { type, frameId, style } = params
+  const { type, frameId, style } = params;
 
   // Append iframe element to document body
   document.getElementsByTagName('body')[0].appendChild(printFrame);
 
   // Get iframe element
-  const iframeElement = document.getElementById(frameId) as HTMLIFrameElement | null
+  const iframeElement = document.getElementById(frameId) as HTMLIFrameElement | null;
 
-  if (!iframeElement) return
+  if (!iframeElement) return;
 
   // Wait for iframe to load all content
   iframeElement.onload = () => {
@@ -79,9 +75,11 @@ const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?:
 
     // Get iframe element document
     const printDocumentWindow = (iframeElement.contentWindow || iframeElement.contentDocument);
-    const printDocument = printDocumentWindow && "document" in printDocumentWindow ? printDocumentWindow?.document : null
+    const printDocument = printDocumentWindow && 'document' in printDocumentWindow
+      ? printDocumentWindow?.document
+      : null;
 
-    if (!printDocument) return
+    if (!printDocument) return;
 
     // Append printable element to the iframe body
     if (printableElement) printDocument.body.appendChild(printableElement);
@@ -105,7 +103,6 @@ const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?:
       performPrint(iframeElement, params);
     }
   };
-}
+};
 
 export { print };
-

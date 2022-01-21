@@ -1,5 +1,6 @@
 dist
 storybook-static
 .eslintrc.js
-src/index.d.ts
 example
+src/_old
+vite.config.js

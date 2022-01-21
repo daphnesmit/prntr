@@ -1,7 +1,6 @@
 import { Config, Params } from '../types';
 import Browser from './browser';
 
-
 export function capitalizePrint(obj: string) {
   return obj.charAt(0).toUpperCase() + obj.slice(1);
 }
@@ -46,7 +45,6 @@ export function addHeader(printElement: any, params: Config) {
   const headerContainer = document.createElement('div');
 
   if (!params.header) {
-
     return printElement.insertBefore(headerContainer, printElement.childNodes[0]);
   }
 

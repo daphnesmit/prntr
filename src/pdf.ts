@@ -1,7 +1,6 @@
-import { cleanUp } from './utils/functions';
-import {print} from './print';
+import { print } from './print';
 import { Params } from './types';
-
+import { cleanUp } from './utils/functions';
 
 const createBlobAndPrint = (params: Params, printFrame: HTMLIFrameElement, data: Uint8Array) => {
   // Pass response or base64 data to a blob and create a local object url
@@ -12,11 +11,11 @@ const createBlobAndPrint = (params: Params, printFrame: HTMLIFrameElement, data:
   printFrame.setAttribute('src', localPdf);
 
   print(params, printFrame);
-}
+};
 
 type Pdf = (params: Params, printFrame: HTMLIFrameElement) => void
 const pdf: Pdf = (params, printFrame) => {
-  const { base64, printable, onError } = params
+  const { base64, printable, onError } = params;
 
   // Check if we have base64 data
   if (base64) {
@@ -42,6 +41,7 @@ const pdf: Pdf = (params, printFrame) => {
   });
 
   req.addEventListener('load', () => {
+    console.log(req.status);
     // Check for errors
     if ([200, 201].indexOf(req.status) === -1) {
       cleanUp(params);
@@ -57,7 +57,6 @@ const pdf: Pdf = (params, printFrame) => {
 
   req.open('GET', printable, true);
   req.send();
-}
+};
 
-
-export { pdf }
+export { pdf };
