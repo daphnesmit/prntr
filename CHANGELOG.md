@@ -1,5 +1,11 @@
 # prntr
 
+## 1.0.4
+
+### Patch Changes
+
+- 435fb46: Add badges for bundlephovia
+
 ## 1.0.3
 
 ### Patch Changes
