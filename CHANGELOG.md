@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.1
+
+### Patch Changes
+
+- f8c7bb8: Remove iframe focus so Firefox also works with onPrintDialogClose
+
 ## 2.0.0
 
 ### Major Changes
