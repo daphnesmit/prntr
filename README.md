@@ -13,7 +13,7 @@ A tiny javascript library to help printing from the web.
 
 *This is a fork of Print.js but transformed into a Typescript package.*
 
-**Only 3.5kB gzipped!**
+**Only 3.7kB gzipped!**
 
 🙏 Thank you [Rodrigo](https://github.com/crabbly) for all your hard work!
 
