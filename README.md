@@ -42,8 +42,103 @@ import prntr from 'prntr'
 ```
 
 ## Documentation
+Extensive examples can be found in the [/example](/example/index.html) html document.
 
-TODO
+First import the prnt function:
+
+```js
+import prntr from 'prntr'
+```
+
+### Print a PDF
+To print a simple pdf:
+
+```js
+prntr({
+  printable: '/path-to/document.pdf',
+  type: 'pdf'
+})
+```
+### Print HTML 
+To print the contents of a HTML Element: 
+
+```js
+prntr({
+  printable: 'elementId', // The id of the DOM Element
+  type: 'html'
+})
+```
+### Print Raw HTML 
+To print an HTML string:
+
+```js
+prntr({
+  printable: `<h1>Prntr Raw HTML Print Test</h1>
+<p class="blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+  type: 'raw-html',
+  style: 'h1 { color: red; } .blue { color:blue; }',
+})
+```
+
+You can also add custom CSS:
+```js
+prntr({
+  printable: 'elementId', // The id of the DOM Element
+  type: 'html',
+  css: '/path-to/customStyle.css',
+  scanStyles: false,  // The library will not process styles applied to the html being printed
+})
+```
+
+### Print JSON 
+To print JSON content in a Table:
+
+```js
+const data = [
+  {
+    name: 'Daphne'
+    age: 35,
+    country: 'NL'
+  },
+  {
+    name: 'Jessica'
+    age: 30,
+    country: 'NL'
+  }
+]
+
+prntr({
+  printable: data,
+  properties: ['name', 'age'],
+  type: 'json',
+  gridStyle: 'border: 2px solid red;',
+  gridHeaderStyle: 'color: red;  border: 2px solid green;',
+})
+```
+
+### Print Image(s) 
+To print a single image:
+
+```js
+prntr({
+  printable: '/images/some-image-1.jpg',
+  type: 'image',
+})
+```
+To print a multiple images:
+
+```js
+prntr({
+  printable: [
+    '/images/some-image-1.jpg',
+    '/images/some-image-2.jpg'
+  ],
+  type: 'image',
+  style: 'img { max-width: 50%; }',
+})
+```
+
 <!-- Insert netlify site-->
 
 ## Contributing to Prntr
