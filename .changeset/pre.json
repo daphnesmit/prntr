@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "prntr": "1.0.3"
+  },
+  "changesets": [
+    "giant-hotels-listen"
+  ]
+}
