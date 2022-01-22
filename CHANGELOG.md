@@ -1,5 +1,11 @@
 # prntr
 
+## 1.0.5-next.1
+
+### Patch Changes
+
+- 7fc5d15: Refactor code to typescript and make params config simpler
+
 ## 1.0.5-next.0
 
 ### Patch Changes
