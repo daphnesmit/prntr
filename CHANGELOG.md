@@ -1,6 +1,6 @@
 # prntr
 
-## 1.0.4-next.0
+## 1.0.4
 
 ### Patch Changes
 
