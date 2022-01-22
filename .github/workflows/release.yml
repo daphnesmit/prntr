@@ -41,7 +41,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         if: github.ref == 'refs/heads/main'
-        id: changesets
+        id: changesets-release
         uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
@@ -52,7 +52,7 @@ jobs:
 
       - name: Create Pre-release Pull Request or Publish to npm
         if: github.ref == 'refs/heads/typescript'
-        id: changesets
+        id: changesets-prerelease
         uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
