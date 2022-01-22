@@ -25,9 +25,7 @@
     "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
     "type-check": "tsc --noEmit",
     "prerelease": "yarn build",
-    "release": "yarn changeset publish",
-    "prepre-release": "yarn build",
-    "pre-release": "yarn changeset pre enter next && yarn changeset publish"
+    "release": "yarn changeset publish"
   },
   "lint-staged": {
     "**/*.(js|ts|tsx)": [
