@@ -110,3 +110,9 @@ export interface BaseConfig extends DefaultConfig {
 }
 
 export type ExtendedConfig = Config & BaseConfig
+
+declare global {
+  interface Window {
+    prntr: (config: Config) => void;
+  }
+}
