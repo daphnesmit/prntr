@@ -6,6 +6,7 @@
   },
   "changesets": [
     "forty-bugs-try",
-    "neat-pets-raise"
+    "neat-pets-raise",
+    "shy-adults-fail"
   ]
 }

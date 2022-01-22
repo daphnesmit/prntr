@@ -1,5 +1,11 @@
 # prntr
 
+## 1.0.5-next.2
+
+### Patch Changes
+
+- 00da681: Added global window type for prntr
+
 ## 1.0.5-next.1
 
 ### Patch Changes
