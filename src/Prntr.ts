@@ -1,4 +1,5 @@
 import { html } from './html';
+import { image } from './image';
 import { json } from './json';
 import { pdf } from './pdf';
 import { rawHtml } from './raw-html';
@@ -43,7 +44,6 @@ class Prntr {
   // font_size: '12pt'
   // honorMarginPadding: true
   // honorColor: false
-  // imageStyle: 'max-width: 100%;'
 
   constructor(...params: PrntrArguments) {
     // Check if a printable document or object was supplied
@@ -70,7 +70,7 @@ class Prntr {
         if (args.printable) this.params.printable = args.printable;
         this.params.fallbackPrintable = typeof args.fallbackPrintable !== 'undefined'
           ? args.fallbackPrintable
-          : this.params.printable;
+          : typeof this.params.printable === 'string' ? this.params.printable : undefined;
         this.params.fallbackPrintable = this.params.base64
           ? `data:application/pdf;base64,${this.params.fallbackPrintable}`
           : this.params.fallbackPrintable;
@@ -184,9 +184,9 @@ class Prntr {
           pdf(this.params, printFrame);
         }
         break;
-      // case 'image':
-      //   Image.print(this.params, printFrame);
-      //   break;
+      case 'image':
+        image(this.params, printFrame);
+        break;
       case 'html':
         html(this.params, printFrame);
         break;

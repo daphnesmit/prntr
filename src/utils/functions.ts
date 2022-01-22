@@ -69,7 +69,7 @@ export function cleanUp(params: Params) {
   params.onLoadingEnd?.();
 
   // If preloading pdf files, clean blob url
-  if (params.onLoadingStart) window.URL.revokeObjectURL(params.printable);
+  if (params.onLoadingStart) window.URL.revokeObjectURL(params.printable as string);
 
   // Run onPrintDialogClose callback
   let event = 'mouseover';

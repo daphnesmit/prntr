@@ -8,7 +8,7 @@ const rawHtml: RawHtml = (params, printFrame) => {
   printableElement.setAttribute('style', 'width:100%');
 
   // Set our raw html as the printable element inner html content
-  printableElement.innerHTML = params.printable;
+  printableElement.innerHTML = params.printable as string;
 
   // Print html contents
   print(params, printFrame, printableElement);

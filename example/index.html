@@ -198,7 +198,7 @@
           '/test-02.jpg'
         ],
         type: 'image',
-        style: 'img { max-width: 400px; margin: 30px; }',
+        style: 'img { max-width: 200px; margin: 30px; }',
         onLoadingStart,
         onLoadingEnd,
       })
@@ -211,7 +211,7 @@
           '/test-02.jpg'
         ],
         type: 'image',
-        css: 'test.css',
+        css: '/test.css',
         onLoadingStart,
         onLoadingEnd,
       })
@@ -220,11 +220,12 @@
     function printExternalImages() {
       prntr({
         printable: [
-          'https://prntr.crabbly.com/images/print-01-highres.jpg',
-          'https://prntr.crabbly.com/images/print-02-highres.jpg',
-          'https://prntr.crabbly.com/images/print-03-highres.jpg'
+          'https://printjs.crabbly.com/images/print-01-highres.jpg',
+          'https://printjs.crabbly.com/images/print-02-highres.jpg',
+          'https://printjs.crabbly.com/images/print-03-highres.jpg'
         ],
         type: 'image',
+        style: 'img { max-width: 100%; }',
         onLoadingStart,
         onLoadingEnd,
       })

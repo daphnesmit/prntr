@@ -44,7 +44,7 @@ function cloneElement (element: HTMLElement, params: Params) {
 type Html = (params: Params, printFrame: HTMLIFrameElement) => void
 const html: Html = (params, printFrame) => {
   // Get the DOM printable element
-  const printElement = document.getElementById(params.printable);
+  const printElement = document.getElementById(params.printable as string);
 
   // Check if the element exists
   if (!printElement) {

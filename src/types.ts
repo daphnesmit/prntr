@@ -1,14 +1,14 @@
 export type PrintTypes = 'pdf' | 'html' | 'image' | 'json' | 'raw-html';
 type Property = { field: string; displayName: string; columnSize?: string }
 export interface Config {
-  printable: string | null; // FIXME
+  printable: string | string[] | null; // FIXME
   fallbackPrintable?: string | null;
   type?: PrintTypes;
   documentTitle?: string;
-  header?: undefined; // FIXME
+  header?: string;
   headerStyle?: string;
   // maxWidth?: number;
-  properties?: string[] | Property[]; // FIXME
+  properties?: string[] | Property[];
   targetStyle?: string | string[];
   targetStyles?: string | string[];
   gridHeaderStyle?: string;
@@ -32,10 +32,10 @@ export interface Config {
   // font_size?: string;
   // honorMarginPadding?: boolean;
   // honorColor?: boolean;
-  imageStyle?: string;
+  // imageStyle?: string;
 }
 export interface Params extends Config {
-  printable: string;
+  printable: string | string[];
   // printableElement?: null
   type: PrintTypes;
   frameId: string;
