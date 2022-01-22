@@ -1,5 +1,11 @@
 # prntr
 
+## 1.0.3
+
+### Patch Changes
+
+- fd94561: Removed the dependency on the cli of changeset
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,16 +1,19 @@
 # Prntr (Printer)
 
 ![Github Build Status](https://github.com/daphnesmit/prntr/actions/workflows/release.yml/badge.svg)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![npm](https://img.shields.io/npm/v/prntr.svg)](https://www.npmjs.com/package/prntr)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?color=lightgrey)](LICENSE)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?color=yellow)](http://standardjs.com/)
+[![npm](https://img.shields.io/npm/v/prntr.svg?color=red)](https://www.npmjs.com/package/prntr)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/prntr?color=success)](https://bundlephobia.com/package/prntr)
 
 A tiny javascript library to help printing from the web.
 
 [Print.js](https://github.com/crabbly/print.js) but modern and maintained.
 
+
 *This is a fork of Print.js but transformed into a Typescript package.*
 
+**Only 3.5kB gzipped!**
 
 🙏 Thank you [Rodrigo](https://github.com/crabbly) for all your hard work!
 
@@ -23,7 +26,7 @@ You can download the latest version of Prntr from [NPM](https://www.npmjs.com/pa
 To install via npm:
 
 ```bash
-yarn add prntr --save
+npm i prntr --save
 ```
 
 To install via yarn:

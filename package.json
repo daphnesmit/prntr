@@ -1,6 +1,6 @@
 {
   "name": "prntr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
   "types": "dist/prntr.cjs.d.ts",
   "main": "dist/prntr.cjs.js",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
+    "@changesets/cli": "^2.19.0",
     "@babel/preset-typescript": "^7.16.7",
     "@preconstruct/cli": "^2.1.5",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
@@ -56,8 +57,5 @@
     "printjs",
     "print.js",
     "print-js"
-  ],
-  "dependencies": {
-    "@changesets/cli": "^2.19.0"
-  }
+  ]
 }
