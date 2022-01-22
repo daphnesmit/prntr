@@ -20,8 +20,6 @@ function pdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement): void {
     ? printable
     : window.location.origin + ((printable as string).charAt(0) !== '/' ? '/' + printable : printable);
 
-  console.log('printable', printable);
-  console.log('pdfUrl', pdfUrl);
   // Get the file through a http request (Preload)
   const req = new window.XMLHttpRequest();
   req.responseType = 'arraybuffer';
