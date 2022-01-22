@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "prntr": "1.0.4"
+  },
+  "changesets": [
+    "forty-bugs-try",
+    "neat-pets-raise",
+    "shy-adults-fail"
+  ]
+}

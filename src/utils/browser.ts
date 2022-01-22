@@ -1,19 +1,23 @@
 const Browser = {
   // Firefox 1.0+
   isFirefox: () => {
+    // @ts-ignore
     return typeof InstallTrigger !== 'undefined';
   },
   // Internet Explorer 6-11
   isIE: () => {
-    return navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode;
+    // @ts-ignore
+    return typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode;
   },
   // Edge 20+
   isEdge: () => {
+    // @ts-ignore
     return !Browser.isIE() && !!window.StyleMedia;
   },
   // Chrome 1+
   isChrome: (context = window) => {
-    return !!context.chrome;
+    // @ts-ignore
+    return !!context.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
   },
   // At least Safari 3+: "[object HTMLElementConstructor]"
   isSafari: () => {

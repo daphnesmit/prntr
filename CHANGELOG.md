@@ -1,5 +1,23 @@
 # prntr
 
+## 1.0.5-next.2
+
+### Patch Changes
+
+- 00da681: Added global window type for prntr
+
+## 1.0.5-next.1
+
+### Patch Changes
+
+- 7fc5d15: Refactor code to typescript and make params config simpler
+
+## 1.0.5-next.0
+
+### Patch Changes
+
+- 5de332c: Release first Typescript version
+
 ## 1.0.4
 
 ### Patch Changes

@@ -6,7 +6,6 @@ body {
   color: #000;
 }
 
-
 .container {
   margin: 40px auto;
   width: 1200px;
@@ -34,4 +33,52 @@ button {
   overflow: hidden;
   color: #fff;
   margin-bottom: 5px;
+}
+
+.loader {
+  width: 100%;
+  height: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+.loader.is--shown {
+  opacity: 1;
+}
+.loader::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  height: inherit;
+  background: #000;
+  animation: 1.7s infinite loop cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes loop {
+  0% {
+    width: 0%;
+    transform: translateX(0%);
+  }
+  7% {
+    width: 10%;
+    transform: translateX(0%);
+  }
+  40% {
+    width: 60%;
+  }
+  50% {
+    transform: translateX(85%);
+  }
+
+  75% {
+    width: 100%;
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

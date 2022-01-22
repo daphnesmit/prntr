@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +8,21 @@
   <script type="module" src="/dist/prntr.esm.js"></script>
   <script nomodule src="/dist/prntr.cjs.js"></script>
   <script type="text/javascript">
+    function onLoadingStart() {
+      document.querySelector('.loader').classList.add('is--shown')
+    }
+
+    function onLoadingEnd() {
+      document.querySelector('.loader').classList.remove('is--shown')
+    }
+
     function printPdf() {
-      prntr('/test.pdf')
+      prntr({
+        printable: '/test.pdf',
+        onLoadingStart,
+        onLoadingEnd,
+        type: 'pdf'
+      })
     }
 
     function printPdfBase64() {
@@ -17,7 +31,9 @@
           prntr({
             printable: base64,
             type: 'pdf',
-            base64: true
+            base64: true,
+            onLoadingStart,
+            onLoadingEnd,
           })
         })
       })
@@ -26,7 +42,9 @@
     function printHtml() {
       prntr({
         printable: 'test',
-        type: 'html'
+        type: 'html',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -36,7 +54,9 @@
       <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
         type: 'raw-html',
-        style: '.blueText {color:blue;}'
+        style: 'h1 { color: red; } .blueText { color:blue; }',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -47,7 +67,9 @@
         printable: 'test',
         type: 'html',
         style: style,
-        scanStyles: false
+        scanStyles: false,
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -55,12 +77,14 @@
       prntr({
         printable: 'test',
         type: 'html',
-        css: 'test.css',
-        scanStyles: false
+        css: '/test.css',
+        scanStyles: false,
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
-    function prntron() {
+    function printJson() {
       let data = []
       for (let i = 0; i <= 1000; i++) {
         data.push({
@@ -75,12 +99,12 @@
           {
             field: 'test1',
             displayName: 'test 1',
-            columnSize: 1
+            columnSize: '20%'
           },
           {
             field: 'test2',
             displayName: 'test 2',
-            columnSize: 4
+            columnSize: '80%'
           }
         ],
         type: 'json',
@@ -106,7 +130,7 @@
         properties: ['test1', 'test2'],
         type: 'json',
         gridStyle: 'border: 2px solid #3971A5;',
-        gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
+        gridHeaderStyle: 'color: red; border: 2px solid #3971A5;',
       })
     }
 
@@ -127,15 +151,17 @@
           {
             field: 'test1',
             displayName: 'test 1',
-            columnSize: 1
+            columnSize: '40%'
           },
           {
             field: 'test2.a',
             displayName: 'test 2 - a',
-            columnSize: 4
+            columnSize: '60%'
           }
         ],
-        type: 'json'
+        type: 'json',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -150,7 +176,7 @@
     }
 
     function printImage() {
-      prntr('/test-01.jpg', 'image')
+      prntr({ printable: '/test-01.jpg', type: 'image'})
     }
 
     function printImages() {
@@ -159,7 +185,9 @@
           '/test-01.jpg',
           '/test-02.jpg'
         ],
-        type: 'image'
+        type: 'image',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -170,7 +198,9 @@
           '/test-02.jpg'
         ],
         type: 'image',
-        style: 'img { max-width: 400px; margin: 30px; }'
+        style: 'img { max-width: 200px; margin: 30px; }',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -181,76 +211,120 @@
           '/test-02.jpg'
         ],
         type: 'image',
-        css: 'test.css',
+        css: '/test.css',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
     function printExternalImages() {
       prntr({
         printable: [
-          'https://prntr.crabbly.com/images/print-01-highres.jpg',
-          'https://prntr.crabbly.com/images/print-02-highres.jpg',
-          'https://prntr.crabbly.com/images/print-03-highres.jpg'
+          'https://printjs.crabbly.com/images/print-01-highres.jpg',
+          'https://printjs.crabbly.com/images/print-02-highres.jpg',
+          'https://printjs.crabbly.com/images/print-03-highres.jpg'
         ],
         type: 'image',
+        style: 'img { max-width: 100%; }',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
   </script>
 </head>
+
 <body>
   <section id="test" class="container">
     <h1>Prntr Test Page</h1>
+    <h2>PDF</h2>
     <p>
-      <button onClick='printPdf();'>
+      <button onClick="printPdf()">
         Print PDF
       </button>
-      <button onClick='printPdfBase64();'>
+      <button onClick="printPdfBase64();">
         Print base64 PDF
       </button>
     </p>
+    <h2>HTML</h2>
     <p>
-      <button onClick='printHtml();'>
+      <button onClick="printHtml();">
         Print HTML
       </button>
-      <button onClick='printHtmlCustomStyle();'>
+      <button onClick="printHtmlCustomStyle();">
         Print HTML with custom style
       </button>
-      <button onClick='printHtmlCss();'>
+      <button onClick="printHtmlCss();">
         Print HTML with custom css
       </button>
-      <button onClick='printRawHtml();'>
+      <button onClick="printRawHtml();">
         Print Raw HTML
       </button>
     </p>
+    <h2>JSON</h2>
     <p>
-      <button onClick='prntron();'>
+      <button onClick="printJson();">
         Print JSON
       </button>
-      <button onClick='printStyledJson();'>
+      <button onClick="printStyledJson();">
         Print Styled JSON
       </button>
-      <button onClick='printNestedJson();'>
+      <button onClick="printNestedJson();">
         Print Nested JSON
       </button>
     </p>
+    <h2>Image</h2>
     <p>
-      <button onClick='printImage();'>
+      <button onClick="printImage();">
         Print Image
       </button>
-      <button onClick='printImages();'>
+      <button onClick="printImages();">
         Print Multiple Images
       </button>
-      <button onClick='printStyledImages();'>
+      <button onClick="printStyledImages();">
         Print Multiple Images Passing Custom Style
       </button>
-      <button onClick='printStyledImagesWithStyleSheet();'>
+      <button onClick="printStyledImagesWithStyleSheet();">
         Print Multiple Images Passing a Style Sheet
       </button>
-      <button onClick='printExternalImages();'>
+      <button onClick="printExternalImages();">
         Print Multiple External Images
       </button>
     </p>
+    <div id="form">
+      <h2>Form Elements</h2>
+      <div>
+        <input type="checkbox" /> Checkbox Example
+      </div>
+      <div>
+          <input type="text" value="Styled text input content..." style="color: red; min-width: 300px;" />
+      </div>
+      <div>
+          <textarea>Text area content...</textarea>
+      </div>
+      <div>
+          <canvas id="myCanvas" width="200" height="50"
+          style="border:2px solid blue;">
+          Your browser does not support the canvas element.
+          </canvas>
+
+          <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(0,0,150,25);
+          </script>
+      </div>
+      <div>
+        <select>
+          <option value="super" selected>Super</option>
+          <option value="test">Test</option>
+          <option value="printjs">Print.js</option>
+        </select>
+      </div>
+    </div>
+    <div class="loader"></div>
   </section>
   <script type="module" src="/example/main.js"></script>
 </body>
+
 </html>

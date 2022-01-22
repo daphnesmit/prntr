@@ -1,6 +1,4 @@
-import print from './lib/init';
-
-const prntr = print.init;
+import { prntr } from './init';
 
 if (typeof window !== 'undefined') {
   window.prntr = prntr;
