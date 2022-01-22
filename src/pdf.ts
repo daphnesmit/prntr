@@ -19,15 +19,15 @@ const pdf: Pdf = (params, printFrame) => {
 
   // Check if we have base64 data
   if (base64) {
-    const bytesArray = Uint8Array.from(window.atob(printable), c => c.charCodeAt(0));
+    const bytesArray = Uint8Array.from(window.atob(printable as string), c => c.charCodeAt(0));
     createBlobAndPrint(params, printFrame, bytesArray);
     return;
   }
 
   // Format pdf url
-  const formattedPrintable = /^(blob|http|\/\/)/i.test(printable)
+  const formattedPrintable = /^(blob|http|\/\/)/i.test(printable as string)
     ? printable
-    : window.location.origin + (printable.charAt(0) !== '/' ? '/' + printable : printable);
+    : window.location.origin + ((printable as string).charAt(0) !== '/' ? '/' + printable : printable);
 
   // Get the file through a http request (Preload)
   const req = new window.XMLHttpRequest();
@@ -55,7 +55,7 @@ const pdf: Pdf = (params, printFrame) => {
     createBlobAndPrint(params, printFrame, req.response);
   });
 
-  req.open('GET', printable, true);
+  req.open('GET', printable as string, true);
   req.send();
 };
 
