@@ -4,5 +4,7 @@
   "initialVersions": {
     "prntr": "1.0.4"
   },
-  "changesets": []
+  "changesets": [
+    "neat-pets-raise"
+  ]
 }
