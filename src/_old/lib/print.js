@@ -26,7 +26,7 @@ const Print = {
       if (printDocument.document) printDocument = printDocument.document;
 
       // Append printable element to the iframe body
-      printDocument.body.appendChild(params.printableElement);
+      printDocument.body.appendChild(params.printableElementprintableElement);
 
       // Add custom style
       if (params.type !== 'pdf' && params.style) {

@@ -1,5 +1,7 @@
 import { html } from './html';
+import { json } from './json';
 import { pdf } from './pdf';
+import { rawHtml } from './raw-html';
 import { Config, Params, PrintTypes } from './types';
 import Browser from './utils/browser';
 
@@ -15,7 +17,7 @@ class Prntr {
     documentTitle: 'Document',
     header: undefined,
     headerStyle: 'font-weight: 300;',
-    maxWidth: 800,
+    // maxWidth: 800,
     properties: undefined,
     targetStyle: ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height'],
     targetStyles: ['border', 'box', 'break', 'text-decoration'],
@@ -188,12 +190,12 @@ class Prntr {
       case 'html':
         html(this.params, printFrame);
         break;
-      // case 'raw-html':
-      //   RawHtml.print(this.params, printFrame);
-      //   break;
-      // case 'json':
-      //   Json.print(this.params, printFrame);
-        // break;
+      case 'raw-html':
+        rawHtml(this.params, printFrame);
+        break;
+      case 'json':
+        json(this.params, printFrame);
+        break;
     }
   }
 }

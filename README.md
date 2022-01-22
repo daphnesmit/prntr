@@ -9,7 +9,7 @@ A tiny javascript library to help printing from the web.
 
 [Print.js](https://github.com/crabbly/print.js) but modern and maintained.
 
-*This initial version is a direct copy of Print.js but will be transformed into a type safe package.*
+*This is a fork of Print.js but transformed into a Typescript package.*
 
 
 🙏 Thank you [Rodrigo](https://github.com/crabbly) for all your hard work!

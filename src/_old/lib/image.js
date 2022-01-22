@@ -17,7 +17,7 @@ export default {
     params.printable.forEach(src => {
       // Create the image element
       const img = document.createElement('img');
-      img.setAttribute('style', params.imageStyle);
+      // img.setAttribute('style', params.imageStyle);
 
       // Set image src with the file url
       img.src = src;

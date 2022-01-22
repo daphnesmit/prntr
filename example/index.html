@@ -42,7 +42,9 @@
     function printHtml() {
       prntr({
         printable: 'test',
-        type: 'html'
+        type: 'html',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -52,7 +54,9 @@
       <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
         type: 'raw-html',
-        style: '.blueText {color:blue;}'
+        style: '.blueText {color:blue;}',
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -63,7 +67,9 @@
         printable: 'test',
         type: 'html',
         style: style,
-        scanStyles: false
+        scanStyles: false,
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
@@ -72,11 +78,13 @@
         printable: 'test',
         type: 'html',
         css: '/test.css',
-        scanStyles: false
+        scanStyles: false,
+        onLoadingStart,
+        onLoadingEnd,
       })
     }
 
-    function prntron() {
+    function printJson() {
       let data = []
       for (let i = 0; i <= 1000; i++) {
         data.push({
@@ -91,12 +99,12 @@
           {
             field: 'test1',
             displayName: 'test 1',
-            columnSize: 1
+            columnSize: '20%'
           },
           {
             field: 'test2',
             displayName: 'test 2',
-            columnSize: 4
+            columnSize: '80%'
           }
         ],
         type: 'json',
@@ -143,12 +151,12 @@
           {
             field: 'test1',
             displayName: 'test 1',
-            columnSize: 1
+            columnSize: '40%'
           },
           {
             field: 'test2.a',
             displayName: 'test 2 - a',
-            columnSize: 4
+            columnSize: '60%'
           }
         ],
         type: 'json',
@@ -253,7 +261,7 @@
     </p>
     <h2>JSON</h2>
     <p>
-      <button onClick="prntron();">
+      <button onClick="printJson();">
         Print JSON
       </button>
       <button onClick="printStyledJson();">

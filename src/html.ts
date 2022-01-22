@@ -41,22 +41,10 @@ function cloneElement (element: HTMLElement, params: Params) {
   return clone as HTMLElement;
 }
 
-function isHtmlStr(printable: Params['printable']): boolean {
-  return /<[a-z][\s\S]*>/i.test(printable);
-}
-
-function createElementFromHTML(printable: Params['printable']) {
-  const div = document.createElement('div');
-  div.innerHTML = printable.trim();
-  return div.firstChild as HTMLElement;
-}
-
 type Html = (params: Params, printFrame: HTMLIFrameElement) => void
 const html: Html = (params, printFrame) => {
   // Get the DOM printable element
-  const printElement = isHtmlStr(params.printable)
-    ? createElementFromHTML(params.printable)
-    : document.getElementById(params.printable);
+  const printElement = document.getElementById(params.printable);
 
   // Check if the element exists
   if (!printElement) {
