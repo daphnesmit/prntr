@@ -1,8 +1,10 @@
-import { Params } from './types';
+import { ExtendedConfig } from './types';
 import Browser from './utils/browser';
-import { cleanUp } from './utils/functions';
+import { cleanUp } from './utils/cleanUp';
 
-function performPrint(iframeElement: HTMLIFrameElement, params: Params) {
+function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) {
+  const { onError } = config;
+
   try {
     iframeElement.focus();
 
@@ -18,7 +20,7 @@ function performPrint(iframeElement: HTMLIFrameElement, params: Params) {
       iframeElement.contentWindow?.print();
     }
   } catch (error: any) {
-    params.onError?.(error);
+    onError?.(error);
   } finally {
     if (Browser.isFirefox()) {
       // Move the iframe element off-screen and make it invisible
@@ -26,7 +28,7 @@ function performPrint(iframeElement: HTMLIFrameElement, params: Params) {
       iframeElement.style.left = '-1px';
     }
 
-    cleanUp(params);
+    cleanUp(config);
   }
 }
 
@@ -50,8 +52,8 @@ function loadIframeImage(image: HTMLImageElement) {
   });
 }
 
-const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) => {
-  const { type, frameId, style } = params;
+const print = (config: ExtendedConfig, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) => {
+  const { type, frameId, style } = config;
 
   // Append iframe element to document body
   document.getElementsByTagName('body')[0].appendChild(printFrame);
@@ -66,9 +68,9 @@ const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?:
     if (type === 'pdf') {
       // Add a delay for Firefox. In my tests, 1000ms was sufficient but 100ms was not
       if (Browser.isFirefox()) {
-        setTimeout(() => performPrint(iframeElement, params), 1000);
+        setTimeout(() => performPrint(iframeElement, config), 1000);
       } else {
-        performPrint(iframeElement, params);
+        performPrint(iframeElement, config);
       }
       return;
     }
@@ -98,9 +100,9 @@ const print = (params: Params, printFrame: HTMLIFrameElement, printableElement?:
     const images = printDocument.getElementsByTagName('img');
 
     if (images.length > 0) {
-      loadIframeImages(Array.from(images)).then(() => performPrint(iframeElement, params));
+      loadIframeImages(Array.from(images)).then(() => performPrint(iframeElement, config));
     } else {
-      performPrint(iframeElement, params);
+      performPrint(iframeElement, config);
     }
   };
 };

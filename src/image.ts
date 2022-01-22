@@ -1,21 +1,23 @@
 import { print } from './print';
-import { Params } from './types';
+import { ImageConfig } from './types';
+import { addHeader } from './utils/addHeader';
 import Browser from './utils/browser';
-import { addHeader } from './utils/functions';
 
-type Image = (params: Params, printFrame: HTMLIFrameElement) => void
-const image: Image = (params, printFrame) => {
+type ExtendedImageConfig = ImageConfig & {
+  frameId: string;
+}
+function image (config: ExtendedImageConfig, printFrame: HTMLIFrameElement) {
+  const { printable, header, headerStyle } = config;
+
   // Check if we are printing one image or multiple images
-  if (!Array.isArray(params.printable)) {
-    // Create array with one image
-    params.printable = [params.printable];
-  }
+  // Create array with one image
+  const images = Array.isArray(printable) ? printable : [printable];
 
   // Create printable element (container)
   const printableElement = document.createElement('div');
 
   // Create all image elements and append them to the printable container
-  params.printable.forEach(src => {
+  images.forEach(src => {
     // Create the image element
     const img = document.createElement('img');
 
@@ -40,10 +42,12 @@ const image: Image = (params, printFrame) => {
   });
 
   // Check if we are adding a print header
-  if (params.header) addHeader(printableElement, params);
+  if (header) {
+    addHeader(printableElement, header, headerStyle);
+  }
 
   // Print image
-  print(params, printFrame, printableElement);
-};
+  print(config, printFrame, printableElement);
+}
 
 export { image };

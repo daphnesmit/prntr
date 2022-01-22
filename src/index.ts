@@ -1,8 +1,4 @@
-import Prntr, { PrntrArguments } from './Prntr';
-
-function prntr(...args: PrntrArguments) {
-  return new Prntr(...args);
-}
+import { prntr } from './init';
 
 if (typeof window !== 'undefined') {
   // @ts-ignore
