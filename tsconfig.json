@@ -3,13 +3,12 @@
     "target": "esnext",
     "lib": [
       "dom",
-      "es2019",
+      "esnext",
     ],
     "typeRoots": [
       "node_modules/@types",
       "src/types/**"
     ],
-    "rootDir": "src",
     "sourceMap": true,
     "allowJs": false,
     "skipLibCheck": true,

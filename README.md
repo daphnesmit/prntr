@@ -100,14 +100,14 @@ To print JSON content in a Table:
 ```js
 const data = [
   {
-    name: 'Daphne'
+    name: 'Daphne',
     age: 35,
-    country: 'NL'
+    country: 'NL',
   },
   {
-    name: 'Jessica'
+    name: 'Jessica',
     age: 30,
-    country: 'NL'
+    country: 'NL',
   }
 ]
 

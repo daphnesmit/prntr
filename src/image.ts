@@ -17,6 +17,18 @@ function image (config: ExtendedImageConfig, printFrame: HTMLIFrameElement) {
   const printableElement = document.createElement('div');
 
   // Create all image elements and append them to the printable container
+  appendImages(images, printableElement);
+
+  // Check if we are adding a print header
+  if (header) {
+    addHeader(printableElement, header, headerStyle);
+  }
+
+  // Print image
+  print(config, printFrame, printableElement);
+}
+
+function appendImages (images: string[], printableElement: HTMLDivElement) {
   images.forEach(src => {
     // Create the image element
     const img = document.createElement('img');
@@ -40,14 +52,5 @@ function image (config: ExtendedImageConfig, printFrame: HTMLIFrameElement) {
     // Append wrapper to the printable element
     printableElement.appendChild(imageWrapper);
   });
-
-  // Check if we are adding a print header
-  if (header) {
-    addHeader(printableElement, header, headerStyle);
-  }
-
-  // Print image
-  print(config, printFrame, printableElement);
 }
-
 export { image };

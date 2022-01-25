@@ -2,6 +2,50 @@ import { ExtendedConfig } from './types';
 import Browser from './utils/browser';
 import { cleanUp } from './utils/cleanUp';
 
+function print(config: ExtendedConfig, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) {
+  const { type, frameId, style } = config;
+
+  // Append iframe element to document body
+  document.getElementsByTagName('body')[0].appendChild(printFrame);
+
+  // Get iframe element
+  const iframeElement = document.getElementById(frameId) as HTMLIFrameElement | null;
+
+  if (!iframeElement) return;
+
+  // Wait for iframe to load all content
+  iframeElement.onload = () => {
+    if (type === 'pdf') {
+      // Add a delay for Firefox. In my tests, 1000ms was sufficient but 100ms was not
+      if (Browser.isFirefox()) {
+        setTimeout(() => performPrint(iframeElement, config), 1000);
+      } else {
+        performPrint(iframeElement, config);
+      }
+      return;
+    }
+
+    // Get iframe element document
+    const printDocument = getPrintDocument(iframeElement);
+    if (!printDocument) return;
+
+    // Append printable element to the iframe body
+    if (printableElement) printDocument.body.appendChild(printableElement);
+
+    // Add custom style
+    addStyle(style, printDocument);
+
+    // If printing images, wait for them to load inside the iframe
+    const images = printDocument.getElementsByTagName('img');
+
+    if (images.length > 0) {
+      loadIframeImages(Array.from(images)).then(() => performPrint(iframeElement, config));
+    } else {
+      performPrint(iframeElement, config);
+    }
+  };
+}
+
 function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) {
   const { onError } = config;
 
@@ -53,59 +97,23 @@ function loadIframeImage(image: HTMLImageElement) {
   });
 }
 
-const print = (config: ExtendedConfig, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) => {
-  const { type, frameId, style } = config;
+function addStyle(style: ExtendedConfig['style'], printDocument: Document) {
+  if (!style) return;
 
-  // Append iframe element to document body
-  document.getElementsByTagName('body')[0].appendChild(printFrame);
+  // Create style element
+  const styleEl = document.createElement('style');
+  styleEl.innerHTML = style;
 
-  // Get iframe element
-  const iframeElement = document.getElementById(frameId) as HTMLIFrameElement | null;
+  // Append style element to iframe's head
+  printDocument.head.appendChild(styleEl);
+}
 
-  if (!iframeElement) return;
-
-  // Wait for iframe to load all content
-  iframeElement.onload = () => {
-    if (type === 'pdf') {
-      // Add a delay for Firefox. In my tests, 1000ms was sufficient but 100ms was not
-      if (Browser.isFirefox()) {
-        setTimeout(() => performPrint(iframeElement, config), 1000);
-      } else {
-        performPrint(iframeElement, config);
-      }
-      return;
-    }
-
-    // Get iframe element document
-    const printDocumentWindow = (iframeElement.contentWindow || iframeElement.contentDocument);
-    const printDocument = printDocumentWindow && 'document' in printDocumentWindow
-      ? printDocumentWindow?.document
-      : null;
-
-    if (!printDocument) return;
-
-    // Append printable element to the iframe body
-    if (printableElement) printDocument.body.appendChild(printableElement);
-
-    // Add custom style
-    if (style) {
-      // Create style element
-      const styleEl = document.createElement('style');
-      styleEl.innerHTML = style;
-
-      // Append style element to iframe's head
-      printDocument.head.appendChild(styleEl);
-    }
-
-    // If printing images, wait for them to load inside the iframe
-    const images = printDocument.getElementsByTagName('img');
-
-    if (images.length > 0) {
-      loadIframeImages(Array.from(images)).then(() => performPrint(iframeElement, config));
-    } else {
-      performPrint(iframeElement, config);
-    }
-  };
-};
+function getPrintDocument(iframe: HTMLIFrameElement): Document | null {
+  const printDocumentWindow = (iframe.contentWindow || iframe.contentDocument);
+  const printDocument = printDocumentWindow && 'document' in printDocumentWindow
+    ? printDocumentWindow?.document
+    : null;
+  return printDocument;
+}
 
 export { print };

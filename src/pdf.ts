@@ -5,8 +5,9 @@ import { cleanUp } from './utils/cleanUp';
 export type ExtendedPdfConfig = PdfConfig & {
   frameId: string;
 }
+
 function pdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement): void {
-  const { base64, printable, onError } = config;
+  const { base64, printable } = config;
 
   // Check if we have base64 data
   if (base64) {
@@ -15,12 +16,17 @@ function pdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement): void {
     return;
   }
 
-  // Format pdf url
-  const pdfUrl = /^(blob|http|\/\/)/i.test(printable as string)
-    ? printable
-    : window.location.origin + ((printable as string).charAt(0) !== '/' ? '/' + printable : printable);
-
   // Get the file through a http request (Preload)
+  createPdfRequest(config, printFrame);
+}
+
+function createPdfRequest(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement) {
+  const { printable, onError } = config;
+
+  // Format pdf url
+  const pdfUrl = getPdfUrl(printable);
+
+  // Request pdf url
   const req = new window.XMLHttpRequest();
   req.responseType = 'arraybuffer';
 
@@ -46,6 +52,12 @@ function pdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement): void {
 
   req.open('GET', printable as string, true);
   req.send();
+}
+
+function getPdfUrl(printable:ExtendedPdfConfig['printable']): string {
+  return /^(blob|http|\/\/)/i.test(printable as string)
+    ? printable
+    : window.location.origin + ((printable as string).charAt(0) !== '/' ? '/' + printable : printable);
 }
 
 function createBlobAndPrint(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement, data: Uint8Array) {

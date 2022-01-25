@@ -7,6 +7,8 @@ import { BaseConfig, Config, ExtendedConfig, HtmlConfig, JsonConfig, PdfConfig }
 import Browser from './utils/browser';
 
 const printTypes = ['pdf', 'html', 'image', 'json', 'raw-html'];
+
+// Define default configs
 const baseConfig: BaseConfig = {
   type: 'pdf',
   documentTitle: 'Document',
@@ -28,6 +30,7 @@ const baseJsonConfig: Partial<JsonConfig> = {
   repeatTableHeader: true,
 };
 
+// Main initializer
 function prntr(config: Config) {
   const printConfig = {
     ...baseConfig,

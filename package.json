@@ -27,6 +27,9 @@
     "prerelease": "yarn build",
     "release": "yarn changeset publish"
   },
+  "browserslist": [
+    "ie 11"
+  ],
   "lint-staged": {
     "**/*.(js|ts|tsx)": [
       "eslint --fix"

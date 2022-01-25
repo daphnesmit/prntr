@@ -7,6 +7,7 @@ type ExtendedJsonConfig = JsonConfig & {
 }
 function json (config: ExtendedJsonConfig, printFrame: HTMLIFrameElement) {
   const { printable, repeatTableHeader, properties, header, headerStyle } = config;
+
   // Check if we received proper data
   if (typeof printable !== 'object') {
     throw new Error('Invalid javascript data object (JSON).');
@@ -22,17 +23,8 @@ function json (config: ExtendedJsonConfig, printFrame: HTMLIFrameElement) {
     throw new Error('Invalid properties array for your JSON data.');
   }
 
-  // We will format the property objects to keep the JSON api compatible with older releases
-  const mappedProperties = properties.map(property => {
-    return {
-      field: typeof property === 'object' ? property.field : property,
-      displayName: typeof property === 'object' ? property.displayName : property,
-      columnSize: typeof property === 'object' && property.columnSize
-        ? `${property.columnSize};`
-        : `${100 / properties.length}%;`,
-    };
-  });
-  const mappedConfig = { ...config, properties: mappedProperties };
+  // We will format the property objects
+  const mappedConfig = getConfigWithMappedProperties(config, properties);
 
   // Create a print container element
   const printableElement = document.createElement('div');
@@ -51,6 +43,20 @@ function json (config: ExtendedJsonConfig, printFrame: HTMLIFrameElement) {
 
 function capitalizePrint(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getConfigWithMappedProperties(
+  config: ExtendedJsonConfig,
+  properties: NonNullable<ExtendedJsonConfig['properties']>,
+) {
+  const mappedProperties = properties.map(property => ({
+    field: typeof property === 'object' ? property.field : property,
+    displayName: typeof property === 'object' ? property.displayName : property,
+    columnSize: typeof property === 'object' && property.columnSize
+      ? `${property.columnSize};`
+      : `${100 / properties.length}%;`,
+  }));
+  return { ...config, properties: mappedProperties };
 }
 
 type MappedProperty = { field: string; displayName: string; columnSize: string }
@@ -101,6 +107,7 @@ function jsonToHTML({
     htmlData += '<tr>';
 
     // Print selected properties only
+    // Not the nicest piece of code..
     for (let n = 0; n < properties.length; n++) {
       let stringData = data[i];
 
