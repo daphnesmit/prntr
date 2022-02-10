@@ -13,7 +13,7 @@ export function cleanUp(config: ExtendedConfig) {
   // Run onPrintDialogClose callback
   let event = 'mouseover';
 
-  if (Browser.isChrome() || Browser.isFirefox()) {
+  if (Browser.isChrome || Browser.isFirefox) {
     // Ps.: Firefox will require an extra click in the document to fire the focus event.
     event = 'focus';
   }

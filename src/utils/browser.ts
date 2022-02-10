@@ -4,25 +4,15 @@ const browser = Bowser.getParser(window.navigator.userAgent);
 const browserName = browser.getBrowserName();
 const Browser = {
   /* Firefox */
-  isFirefox: () => {
-    return browserName === 'Firefox';
-  },
+  isFirefox: browserName === 'Firefox',
   /* Internet Explorer */
-  isIE: () => {
-    return browserName === 'Internet Explorer';
-  },
+  isIE: browserName === 'Internet Explorer',
   /* Edge */
-  isEdge: () => {
-    return browserName === 'Microsoft Edge';
-  },
+  isEdge: browserName === 'Microsoft Edge',
   /* Chrome */
-  isChrome: () => {
-    return browserName === 'Chrome';
-  },
+  isChrome: browserName === 'Chrome',
   /* Safari */
-  isSafari: () => {
-    return browserName === 'Safari';
-  },
+  isSafari: browserName === 'Safari',
 };
 
 export default Browser;

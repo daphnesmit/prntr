@@ -99,7 +99,7 @@ function startPdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement) {
   const { onLoadingEnd, onIncompatibleBrowser, onError } = config;
 
   // Check browser support for pdf and if not supported we will just open the pdf file instead
-  if (Browser.isIE()) {
+  if (Browser.isIE) {
     try {
       console.info('Prntr doesn\'t support PDF printing in Internet Explorer.');
       const fallbackPrintable = getFallbackPrintable(config);
@@ -130,7 +130,7 @@ function getPrintFrame({ type, documentTitle, css, frameId }: ExtendedConfig) {
   // Set iframe element id
   printFrame.setAttribute('id', frameId);
 
-  if (Browser.isFirefox()) {
+  if (Browser.isFirefox) {
     // Set the iframe to be is visible on the page (guaranteed by fixed position) but hidden using opacity 0, because
     // this works in Firefox. The height needs to be sufficient for some part of the document other than the PDF
     // viewer's toolbar to be visible in the page

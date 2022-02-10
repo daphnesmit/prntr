@@ -38,7 +38,7 @@ function appendImages (images: string[], printableElement: HTMLDivElement) {
 
     // The following block is for Firefox, which for some reason requires the image's src to be fully qualified in
     // order to print it
-    if (Browser.isFirefox()) {
+    if (Browser.isFirefox) {
       const fullyQualifiedSrc = img.src;
       img.src = fullyQualifiedSrc;
     }

@@ -17,7 +17,7 @@ function print(config: ExtendedConfig, printFrame: HTMLIFrameElement, printableE
   iframeElement.onload = () => {
     if (type === 'pdf') {
       // Add a delay for Firefox. In my tests, 1000ms was sufficient but 100ms was not
-      if (Browser.isFirefox()) {
+      if (Browser.isFirefox || Browser.isSafari) {
         setTimeout(() => performPrint(iframeElement, config), 1000);
       } else {
         performPrint(iframeElement, config);
@@ -54,7 +54,7 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
     // iframeElement.focus();
 
     // If Edge or IE, try catch with execCommand
-    if (Browser.isEdge() || Browser.isIE()) {
+    if (Browser.isEdge || Browser.isIE) {
       try {
         iframeElement.contentWindow?.document.execCommand('print', false);
       } catch (e) {
@@ -67,7 +67,7 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
   } catch (error: any) {
     onError?.(error);
   } finally {
-    if (Browser.isFirefox()) {
+    if (Browser.isFirefox) {
       // Move the iframe element off-screen and make it invisible
       iframeElement.style.visibility = 'hidden';
       iframeElement.style.left = '-1px';
