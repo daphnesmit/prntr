@@ -1,32 +1,27 @@
+import Bowser from 'bowser';
+
+const browser = Bowser.getParser(window.navigator.userAgent);
+const browserName = browser.getBrowserName();
 const Browser = {
-  // Firefox 1.0+
+  /* Firefox */
   isFirefox: () => {
-    // @ts-ignore
-    return typeof InstallTrigger !== 'undefined';
+    return browserName === 'Firefox';
   },
-  // Internet Explorer 6-11
+  /* Internet Explorer */
   isIE: () => {
-    // @ts-ignore
-    return typeof window !== 'undefined' && !!window.MSInputMethodContext && !!document.documentMode;
+    return browserName === 'Internet Explorer';
   },
-  // Edge 20+
+  /* Edge */
   isEdge: () => {
-    // @ts-ignore
-    return !Browser.isIE() && !!window.StyleMedia;
+    return browserName === 'Microsoft Edge';
   },
-  // Chrome 1+
-  isChrome: (context = window) => {
-    // @ts-ignore
-    return !!context.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+  /* Chrome */
+  isChrome: () => {
+    return browserName === 'Chrome';
   },
-  // At least Safari 3+: "[object HTMLElementConstructor]"
+  /* Safari */
   isSafari: () => {
-    return Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0 ||
-        navigator.userAgent.toLowerCase().indexOf('safari') !== -1;
-  },
-  // IOS Chrome
-  isIOSChrome: () => {
-    return navigator.userAgent.toLowerCase().indexOf('crios') !== -1;
+    return browserName === 'Safari';
   },
 };
 
