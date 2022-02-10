@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.2
+
+### Patch Changes
+
+- 1fc2d14: Added bowser as browser detection service
+
 ## 2.0.1
 
 ### Patch Changes
