@@ -37,15 +37,15 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
-    "@changesets/cli": "^2.19.0",
     "@babel/preset-typescript": "^7.16.7",
+    "@changesets/cli": "^2.19.0",
     "@preconstruct/cli": "^2.1.5",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "eslint": "^8.7.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
     "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
@@ -61,5 +61,8 @@
     "printjs",
     "print.js",
     "print-js"
-  ]
+  ],
+  "dependencies": {
+    "bowser": "^2.11.0"
+  }
 }
