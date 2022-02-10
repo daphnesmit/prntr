@@ -1,7 +1,7 @@
 import Bowser from 'bowser';
 
-const browser = Bowser.getParser(window.navigator.userAgent);
-const browserName = browser.getBrowserName();
+const browser = typeof window !== 'undefined' && Bowser.getParser(window.navigator.userAgent);
+const browserName = browser && browser.getBrowserName();
 const Browser = {
   /* Firefox */
   isFirefox: browserName === 'Firefox',
