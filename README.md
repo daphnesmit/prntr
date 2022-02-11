@@ -49,6 +49,10 @@ import prntr from 'prntr'
 - Safari Mobile: Didn't check but who prints on iPad even these days. Actually who prints at all?!
 - Edge: Latest 2 versions should work at least. Old EdgeHTML engine should also work. Maybe you need to transpile package though.
 - IE11: I doubt it works in IE11. You probably need to transpile the package but I am not sure that will work. IE11 is really old and even Microsoft itself stopped supporting it.
+
+
+Feel free to send pull requests to fix any browser issues!
+
 ## Documentation
 Extensive examples can be found in the [/example](/example/index.html) html document.
 
