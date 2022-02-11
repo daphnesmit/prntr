@@ -1,5 +1,12 @@
 # prntr
 
+## 2.0.4
+
+### Patch Changes
+
+- a5f5bb8: Browser support docs
+- 0197a80: Edge HTML engine needs old print function
+
 ## 2.0.3
 
 ### Patch Changes
