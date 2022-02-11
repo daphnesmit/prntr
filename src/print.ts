@@ -54,9 +54,9 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
     // iframeElement.focus();
 
     // If Edge or IE, try catch with execCommand
-    if (Browser.isEdge || Browser.isIE) {
+    if (Browser.isEdgeHTML || Browser.isIE) {
       try {
-        iframeElement.contentWindow?.document.execCommand('print', false);
+        iframeElement.contentWindow?.document.execCommand('print', true);
       } catch (e) {
         iframeElement.contentWindow?.print();
       }
