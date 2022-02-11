@@ -51,10 +51,10 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
 
   try {
     // Probably allowing to make this work in Firefox without needing to focus the window again
-    // iframeElement.focus();
+    iframeElement.focus();
 
     // If Edge or IE, try catch with execCommand
-    if (Browser.isEdgeHTML || Browser.isIE) {
+    if (Browser.isEdge || Browser.isIE) {
       try {
         iframeElement.contentWindow?.document.execCommand('print', true);
       } catch (e) {
@@ -73,7 +73,7 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
       iframeElement.style.left = '-1px';
     }
 
-    cleanUp(config);
+    setTimeout(() => cleanUp(config), 10);
   }
 }
 
