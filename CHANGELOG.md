@@ -1,5 +1,12 @@
 # prntr
 
+## 2.0.3
+
+### Patch Changes
+
+- efaa069: Added bowser without functions checks
+- 037ce23: SSR bug in window chck of user agent
+
 ## 2.0.2
 
 ### Patch Changes
