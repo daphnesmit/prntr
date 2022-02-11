@@ -41,6 +41,14 @@ Import the library into your project:
 import prntr from 'prntr'
 ```
 
+## Browser Support
+
+- Chrome: Latest 2 versions should work at least
+- Firefox: Latest 2 versions should work at least. Firefox requires you to set 'open PDF in browser' setting to true in your browser settings to be able to print PDFs and such.
+- Safari: Latest 2 versions should partially work. Safari 14/15 has issues with printing more than once. See [this issue](https://github.com/crabbly/Print.js/issues/528) on StackOverflow.
+- Safari Mobile: Didn't check but who prints on iPad even these days. Actually who prints at all?!
+- Edge: Latest 2 versions should work at least. Old EdgeHTML engine should also work. Maybe you need to transpile package though.
+- IE11: I doubt it works in IE11. You probably need to transpile the package but I am not sure that will work. IE11 is really old and even Microsoft itself stopped supporting it.
 ## Documentation
 Extensive examples can be found in the [/example](/example/index.html) html document.
 
