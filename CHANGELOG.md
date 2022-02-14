@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.10
+
+### Patch Changes
+
+- 34cb83a: remove weird edge checks
+
 ## 2.0.9
 
 ### Patch Changes
