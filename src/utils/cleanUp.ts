@@ -12,7 +12,7 @@ export function cleanUp(config: ExtendedConfig) {
 
   let event = 'mouseover';
 
-  if (Browser.isChrome || Browser.isEdge || Browser.isFirefox) {
+  if (Browser.isChrome || (Browser.isEdge && !Browser.isEdgeHTML) || Browser.isFirefox) {
     // Ps.: Firefox will require an extra click in the document to fire the focus event.
     event = 'focus';
   }
@@ -26,7 +26,7 @@ export function cleanUp(config: ExtendedConfig) {
 
     // Remove iframe from the DOM
     const iframe = document.getElementById(frameId);
-    setTimeout(() => iframe?.remove(), 1000);
+    setTimeout(() => iframe?.remove(), 100);
   };
 
   window.addEventListener(event, handler);
