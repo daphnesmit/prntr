@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.6
+
+### Patch Changes
+
+- 3eb1fca: Edge needs more time to print before it should cleanup
+
 ## 2.0.5
 
 ### Patch Changes
