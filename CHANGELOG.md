@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.7
+
+### Patch Changes
+
+- 21b56d9: more timeout for edge
+
 ## 2.0.6
 
 ### Patch Changes
