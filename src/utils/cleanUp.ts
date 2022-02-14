@@ -22,11 +22,11 @@ export function cleanUp(config: ExtendedConfig) {
     // Make sure the event only happens once.
     window.removeEventListener(event, handler);
 
-    onPrintDialogClose?.();
-
     // Remove iframe from the DOM
     const iframe = document.getElementById(frameId);
-    iframe?.remove();
+    setTimeout(() => iframe?.remove(), Browser.isEdge ? 1000 : 10);
+
+    onPrintDialogClose?.();
   };
 
   window.addEventListener(event, handler);
