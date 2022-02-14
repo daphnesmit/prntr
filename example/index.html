@@ -20,7 +20,7 @@
         printable: '/test.pdf',
         onLoadingStart,
         onLoadingEnd,
-        onPrintDialogClose: () => alert('onPrintDialogClose called!'),
+        onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
         type: 'pdf'
       })
     }
@@ -45,7 +45,7 @@
         type: 'html',
         onLoadingStart,
         onLoadingEnd,
-        onPrintDialogClose: () => alert('onPrintDialogClose called!'),
+        onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
       })
     }
 

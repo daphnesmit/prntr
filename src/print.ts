@@ -73,7 +73,6 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
       iframeElement.style.left = '-1px';
     }
 
-    // Edge needs a bit more time before cleanup otherwise it will revokeObjectURL too fast and print won't work
     setTimeout(() => cleanUp(config), 100);
   }
 }
