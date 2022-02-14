@@ -10,7 +10,6 @@ export function cleanUp(config: ExtendedConfig) {
   // If preloading pdf files, clean blob url
   if (onLoadingStart && typeof printable === 'string') window.URL.revokeObjectURL(printable);
 
-  // Run onPrintDialogClose callback
   let event = 'mouseover';
 
   if (Browser.isChrome || Browser.isFirefox) {
@@ -26,6 +25,7 @@ export function cleanUp(config: ExtendedConfig) {
     const iframe = document.getElementById(frameId);
     setTimeout(() => iframe?.remove(), Browser.isEdge ? 1000 : 10);
 
+    // Run onPrintDialogClose callback
     onPrintDialogClose?.();
   };
 
