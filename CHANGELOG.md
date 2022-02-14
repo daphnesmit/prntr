@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.5
+
+### Patch Changes
+
+- 81d63d7: Make Edge work with focus
+
 ## 2.0.4
 
 ### Patch Changes
