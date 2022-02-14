@@ -54,7 +54,7 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
     iframeElement.focus();
 
     // If Edge or IE, try catch with execCommand
-    if (Browser.isEdge || Browser.isIE) {
+    if (Browser.isEdgeHTML || Browser.isIE) {
       try {
         iframeElement.contentWindow?.document.execCommand('print', true);
       } catch (e) {
@@ -73,7 +73,8 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
       iframeElement.style.left = '-1px';
     }
 
-    setTimeout(() => cleanUp(config), 10);
+    // Edge needs a bit more time before cleanup otherwise it will revokeObjectURL too fast and print won't work
+    setTimeout(() => cleanUp(config), Browser.isEdge ? 1000 : 10);
   }
 }
 
