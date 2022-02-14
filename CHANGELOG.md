@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.9
+
+### Patch Changes
+
+- 1200ba7: add on focus for the cleanup for edge
+
 ## 2.0.8
 
 ### Patch Changes
