@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.8
+
+### Patch Changes
+
+- 22cd5d1: more timeout
+
 ## 2.0.7
 
 ### Patch Changes
