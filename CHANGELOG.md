@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.11
+
+### Patch Changes
+
+- f3f5b52: add umd build for inline script usage
+
 ## 2.0.10
 
 ### Patch Changes
