@@ -5,6 +5,7 @@
   "types": "dist/prntr.cjs.d.ts",
   "main": "dist/prntr.cjs.js",
   "module": "dist/prntr.esm.js",
+  "umd:main": "dist/prntr.umd.min.js",
   "repository": "https://github.com/daphnesmit/prntr",
   "author": "Daphne Smit",
   "contributors": [
@@ -64,5 +65,8 @@
   ],
   "dependencies": {
     "bowser": "^2.11.0"
+  },
+  "preconstruct": {
+    "umdName": "prntr"
   }
 }
