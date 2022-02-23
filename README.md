@@ -35,11 +35,19 @@ To install via yarn:
 yarn add prntr
 ```
 
+## Usage
 Import the library into your project:
 
 ```js
 import prntr from 'prntr'
 ```
+
+Or use the library directly in a script tag using the umd build and a CDN or such like this:
+```js
+<script src="https://cdn.jsdelivr.net/npm/prntr@2.0.11/dist/prntr.umd.min.js"></script>
+```
+
+
 
 ## Browser Support
 
