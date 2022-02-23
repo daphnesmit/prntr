@@ -221,4 +221,4 @@ This package is using [changesets](https://github.com/changesets/changesets) to 
 
 ## License
 
-Prntr is available under the [MIT license](https://github.com/daphnesmit/prntr/blob/master/LICENSE).
+Prntr is available under the [MIT license](https://github.com/daphnesmit/prntr/blob/main/LICENSE).
