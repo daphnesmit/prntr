@@ -1,6 +1,6 @@
 {
   "name": "prntr",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "A tiny javascript library to help printing from the web. Print.js but modern and maintained.",
   "types": "dist/prntr.cjs.d.ts",
   "main": "dist/prntr.cjs.js",
