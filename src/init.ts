@@ -6,6 +6,7 @@ import { ExtendedIPdfConfig, pdf } from './pdf';
 import { rawHtml } from './raw-html';
 import { Config, ExtendedConfig, IBaseConfig, IHtmlConfig, IJsonConfig, IPdfConfig } from './types';
 import Browser from './utils/browser';
+import { cleanupFast } from './utils/cleanUp';
 
 const printTypes = ['pdf', 'html', 'image', 'json', 'raw-html'];
 
@@ -89,11 +90,24 @@ function start(config: ExtendedConfig) {
   }
 }
 
+function createBlobAndPrint(
+  data: Uint8Array,
+) {
+  // Pass response or base64 data to a blob and create a local object url
+  const localPdfBlb = new window.Blob([data], { type: 'application/pdf' });
+  return window.URL.createObjectURL(localPdfBlb);
+}
+
+function getBlob(printable: string) {
+  return Uint8Array.from(window.atob(printable as string), (c) => c.charCodeAt(0));
+}
+
 function getFallbackPrintable({ printable, fallbackPrintable, base64 }: IPdfConfig) {
   if (fallbackPrintable) {
-    return base64 ? `data:application/pdf;base64,${fallbackPrintable}` : fallbackPrintable;
+    return base64 ? createBlobAndPrint(getBlob(fallbackPrintable)) : fallbackPrintable;
   }
-  return base64 ? `data:application/pdf;base64,${printable}` : printable;
+
+  return base64 ? createBlobAndPrint(getBlob(printable)) : printable;
 }
 
 function printFallback(config: ExtendedIPdfConfig, hasHref?: boolean) {
@@ -126,7 +140,7 @@ function startOther(config: ExtendedConfig, callback: any) {
 }
 
 function startPdf(config: ExtendedIPdfConfig, printFrame: HTMLIFrameElement) {
-  const { onLoadingEnd, onIncompatibleBrowser, onError, frameId } = config;
+  const { onLoadingEnd, onIncompatibleBrowser, onError } = config;
 
   // Check browser support for pdf and if not supported we will just open the pdf file instead
   if (Browser.isIE || Browser.isSafari || Browser.isChromeMobile || Browser.isIosChrome) {
@@ -136,9 +150,9 @@ function startPdf(config: ExtendedIPdfConfig, printFrame: HTMLIFrameElement) {
       if (Browser.isSafari && !config.base64) console.info('Prntr doesn\'t support PDF printing in Safari');
       if (Browser.isSafari && !Browser.isIpad && config.base64) console.info('Prntr doesn\'t support PDF Base64 printing in Safari on Desktop or Iphone');
 
-      const hasHref = !!Browser.isChromeMobile;
+      const hasHref = !!Browser.isChromeMobile || config.base64;
       printFallback(config, hasHref);
-      clearPrintFrames(frameId);
+      cleanupFast(config);
       onIncompatibleBrowser?.();
     } catch (error: any) {
       onError?.(error);
