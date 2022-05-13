@@ -23,6 +23,15 @@
         type: 'pdf'
       })
     }
+    function printPdf2() {
+      prntr({
+        printable: '/test2.pdf',
+        onLoadingStart,
+        onLoadingEnd,
+        onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
+        type: 'pdf'
+      })
+    }
 
     function printPdfBase64() {
       fetch('/base64.txt').then(function (response) {
@@ -240,6 +249,9 @@
     <p>
       <button onClick="printPdf()">
         Print PDF
+      </button>
+      <button onClick="printPdf2()">
+        Print PDF Multiple pages
       </button>
       <button onClick="printPdfBase64();">
         Print base64 PDF

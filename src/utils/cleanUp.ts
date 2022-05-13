@@ -1,6 +1,19 @@
 import { ExtendedConfig } from '../types';
 import Browser from './browser';
 
+function removeIframe(frameId:string) {
+  const iframe = document.getElementById(frameId);
+  setTimeout(() => iframe?.remove(), 100);
+}
+
+export function cleanupFast(config: ExtendedConfig) {
+  const { onLoadingEnd, frameId } = config;
+  // Remove Iframe
+  removeIframe(frameId);
+  // Check for a finished loading hook function
+  onLoadingEnd?.();
+}
+
 export function cleanUp(config: ExtendedConfig) {
   const { onLoadingEnd, onLoadingStart, onPrintDialogClose, frameId, printable } = config;
 
@@ -25,8 +38,7 @@ export function cleanUp(config: ExtendedConfig) {
     onPrintDialogClose?.();
 
     // Remove iframe from the DOM
-    const iframe = document.getElementById(frameId);
-    setTimeout(() => iframe?.remove(), 100);
+    removeIframe(frameId);
   };
 
   window.addEventListener(event, handler);

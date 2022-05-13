@@ -2,6 +2,7 @@ import Bowser from 'bowser';
 
 const browser = typeof window !== 'undefined' && Bowser.getParser(window.navigator.userAgent);
 const browserName = browser && browser.getBrowserName();
+const platform = browser && browser.getPlatformType();
 const engine = browser && browser.getEngine().name;
 
 const Browser = {
@@ -17,6 +18,12 @@ const Browser = {
   isChrome: browserName === 'Chrome',
   /* Safari */
   isSafari: browserName === 'Safari',
+  /* ipad */
+  isIpad: typeof window !== 'undefined' && navigator.maxTouchPoints &&
+  navigator.maxTouchPoints > 2 &&
+  /MacIntel/.test(navigator.platform),
+  /* iphone */
+  isIphone: typeof window !== 'undefined' && browserName === 'Safari' && platform === 'mobile',
 };
 
 export default Browser;

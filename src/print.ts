@@ -2,7 +2,11 @@ import { ExtendedConfig } from './types';
 import Browser from './utils/browser';
 import { cleanUp } from './utils/cleanUp';
 
-function print(config: ExtendedConfig, printFrame: HTMLIFrameElement, printableElement?: HTMLElement) {
+function print
+(config: ExtendedConfig,
+  printFrame: HTMLIFrameElement,
+  printableElement?: HTMLElement,
+) {
   const { type, frameId, style } = config;
 
   // Append iframe element to document body
@@ -17,7 +21,7 @@ function print(config: ExtendedConfig, printFrame: HTMLIFrameElement, printableE
   iframeElement.onload = () => {
     if (type === 'pdf') {
       // Add a delay for Firefox. In my tests, 1000ms was sufficient but 100ms was not
-      if (Browser.isFirefox || Browser.isSafari) {
+      if (Browser.isFirefox) {
         setTimeout(() => performPrint(iframeElement, config), 1000);
       } else {
         performPrint(iframeElement, config);
