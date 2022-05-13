@@ -1,5 +1,0 @@
----
-"prntr": patch
----
-
-update docs
