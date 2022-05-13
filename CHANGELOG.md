@@ -1,5 +1,12 @@
 # prntr
 
+## 2.0.12
+
+### Patch Changes
+
+- f9c5d1a: added more browsers to incompatible browsers callback
+- 9da7e52: open pdfs in iphone, ipad or safari in new window when print is not supported
+
 ## 2.0.11
 
 ### Patch Changes
