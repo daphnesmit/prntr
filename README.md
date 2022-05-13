@@ -52,11 +52,14 @@ Or use the library directly in a script tag using the umd build and a CDN or suc
 ## Browser Support
 
 - Chrome: Latest 2 versions should work at least
+- Chrome mobile: does not work. It calls onIncompatibleBrowser callback.
+- Chrome tablet: does not work. It calls onIncompatibleBrowser callback.
 - Firefox: Latest 2 versions should work at least. Firefox requires you to set 'open PDF in browser' setting to true in your browser settings to be able to print PDFs and such.
 - Safari: Latest 2 versions should partially work. Safari 14/15 has issues with printing more than once. See [this issue](https://github.com/crabbly/Print.js/issues/528) on StackOverflow.
-- Safari Mobile: Didn't check but who prints on iPad even these days. Actually who prints at all?!
+- Safari Mobile: Not working on iphone. It calls onIncompatibleBrowser callback.
+- Safari Tablet: Not working on ipad . It calls onIncompatibleBrowser callback.
 - Edge: Latest 2 versions should work at least. Old EdgeHTML engine should also work. Maybe you need to transpile package though.
-- IE11: I doubt it works in IE11. You probably need to transpile the package but I am not sure that will work. IE11 is really old and even Microsoft itself stopped supporting it.
+- IE11: NOPE! IE11 is really old and even Microsoft itself stopped supporting it.
 
 
 Feel free to send pull requests to fix any browser issues!
