@@ -44,7 +44,7 @@ import prntr from 'prntr'
 
 Or use the library directly in a script tag using the umd build and a CDN or such like this:
 ```js
-<script src="https://cdn.jsdelivr.net/npm/prntr@2.0.11/dist/prntr.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prntr@2.0.13/dist/prntr.umd.min.js"></script>
 ```
 
 
