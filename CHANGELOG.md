@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.13
+
+### Patch Changes
+
+- e3cb340: update the browser support
+
 ## 2.0.12
 
 ### Patch Changes
