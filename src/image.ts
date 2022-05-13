@@ -1,9 +1,9 @@
 import { print } from './print';
-import { ImageConfig } from './types';
+import { IImageConfig } from './types';
 import { addHeader } from './utils/addHeader';
 import Browser from './utils/browser';
 
-type ExtendedImageConfig = ImageConfig & {
+export type ExtendedImageConfig = IImageConfig & {
   frameId: string;
 }
 function image (config: ExtendedImageConfig, printFrame: HTMLIFrameElement) {
@@ -29,7 +29,7 @@ function image (config: ExtendedImageConfig, printFrame: HTMLIFrameElement) {
 }
 
 function appendImages (images: string[], printableElement: HTMLDivElement) {
-  images.forEach(src => {
+  images.forEach((src) => {
     // Create the image element
     const img = document.createElement('img');
 

@@ -28,6 +28,7 @@
         printable: '/test2.pdf',
         onLoadingStart,
         onLoadingEnd,
+            onIncompatibleBrowser: ()=>  alert('Printing PDF is not supported in this browser'),
         onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
         type: 'pdf'
       })
@@ -40,6 +41,7 @@
             printable: base64,
             type: 'pdf',
             base64: true,
+            onIncompatibleBrowser: ()=>  alert('Printing Base64 PDF is not supported in this browser'),
             onLoadingStart,
             onLoadingEnd,
           })
@@ -53,6 +55,7 @@
         type: 'html',
         onLoadingStart,
         onLoadingEnd,
+        onIncompatibleBrowser: ()=>  alert('Printing HTML is not supported in this browser'),
         onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
       })
     }

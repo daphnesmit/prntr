@@ -1,30 +1,31 @@
+/* eslint-disable max-len */
 import { html } from './html';
 import { image } from './image';
 import { json } from './json';
-import { ExtendedPdfConfig, pdf } from './pdf';
+import { ExtendedIPdfConfig, pdf } from './pdf';
 import { rawHtml } from './raw-html';
-import { BaseConfig, Config, ExtendedConfig, HtmlConfig, JsonConfig, PdfConfig } from './types';
+import { Config, ExtendedConfig, IBaseConfig, IHtmlConfig, IJsonConfig, IPdfConfig } from './types';
 import Browser from './utils/browser';
 
 const printTypes = ['pdf', 'html', 'image', 'json', 'raw-html'];
 
 // Define default configs
-const baseConfig: BaseConfig = {
+const baseConfig: IBaseConfig = {
   type: 'pdf',
   documentTitle: 'Document',
   frameId: 'prntr',
   onError: (error: string) => { throw new Error(error); },
 };
-const basePdfConfig: Partial<PdfConfig> = {
+const baseIPdfConfig: Partial<IPdfConfig> = {
   base64: false,
 };
-const baseHtmlConfig: Partial<HtmlConfig> = {
+const baseIHtmlConfig: Partial<IHtmlConfig> = {
   targetStyle: ['clear', 'display', 'width', 'min-width', 'height', 'min-height', 'max-height'],
   targetStyles: ['border', 'box', 'break', 'text-decoration'],
   ignoreElements: [],
   scanStyles: true,
 };
-const baseJsonConfig: Partial<JsonConfig> = {
+const baseJsonConfig: Partial<IJsonConfig> = {
   gridHeaderStyle: 'font-weight: bold; padding: 5px; border: 1px solid #dddddd;',
   gridStyle: 'border: 1px solid lightgray; margin-bottom: -1px;',
   repeatTableHeader: true,
@@ -51,7 +52,7 @@ function validateConfig({ type, printable }: ExtendedConfig) {
   }
 
   // Validate type
-  if (!type || typeof type !== 'string' || !printTypes.includes(type.toLowerCase())) {
+  if (typeof type !== 'string' || !printTypes.includes(type.toLowerCase())) {
     throw new Error('Invalid print type. Available types are: pdf, html, raw-html, image and json.');
   }
 }
@@ -71,41 +72,73 @@ function start(config: ExtendedConfig) {
   // Check printable type
   switch (config.type) {
     case 'pdf':
-      startPdf({ ...basePdfConfig, ...config }, printFrame);
+      startPdf({ ...baseIPdfConfig, ...config }, printFrame);
       break;
     case 'image':
-      image(config, printFrame);
+      startOther(config, image(config, printFrame));
       break;
     case 'html':
-      html({ ...baseHtmlConfig, ...config }, printFrame);
+      startOther(config, html({ ...baseIHtmlConfig, ...config }, printFrame));
       break;
     case 'raw-html':
-      rawHtml(config, printFrame);
+      startOther(config, rawHtml(config, printFrame));
       break;
     case 'json':
-      json({ ...baseJsonConfig, ...config }, printFrame);
+      startOther(config, json({ ...baseJsonConfig, ...config }, printFrame));
       break;
   }
 }
 
-function getFallbackPrintable({ printable, fallbackPrintable, base64 }: PdfConfig) {
+function getFallbackPrintable({ printable, fallbackPrintable, base64 }: IPdfConfig) {
   if (fallbackPrintable) {
     return base64 ? `data:application/pdf;base64,${fallbackPrintable}` : fallbackPrintable;
   }
   return base64 ? `data:application/pdf;base64,${printable}` : printable;
 }
 
-function startPdf(config: ExtendedPdfConfig, printFrame: HTMLIFrameElement) {
-  const { onLoadingEnd, onIncompatibleBrowser, onError } = config;
+function printFallback(config: ExtendedIPdfConfig, hasHref?: boolean) {
+  const fallbackPrintable = getFallbackPrintable(config);
+  if (hasHref) {
+    window.location.href = fallbackPrintable;
+    return;
+  }
+  const win = window.open(fallbackPrintable, '_blank', 'toolbar=yes,scrollbars=yes,menubar=no,location=no,resizable=yes');
+  win?.focus();
+}
+
+function startOther(config: ExtendedConfig, callback: any) {
+  const { onLoadingEnd, onIncompatibleBrowser, onError, frameId } = config;
 
   // Check browser support for pdf and if not supported we will just open the pdf file instead
-  if (Browser.isIE) {
+  if (Browser.isChromeMobile || Browser.isIosChrome) {
     try {
-      console.info('Prntr doesn\'t support PDF printing in Internet Explorer.');
-      const fallbackPrintable = getFallbackPrintable(config);
-      if (!fallbackPrintable) throw new Error('Prntr can not print fallbackPrintable');
-      const win = window.open(fallbackPrintable, '_blank');
-      win?.focus();
+      console.info('Prntr doesn\'t support printing of Image elements in Chrome mobile');
+      clearPrintFrames(frameId);
+      onIncompatibleBrowser?.();
+    } catch (error: any) {
+      onError?.(error);
+    } finally {
+      onLoadingEnd?.();
+    }
+    return;
+  }
+  return callback;
+}
+
+function startPdf(config: ExtendedIPdfConfig, printFrame: HTMLIFrameElement) {
+  const { onLoadingEnd, onIncompatibleBrowser, onError, frameId } = config;
+
+  // Check browser support for pdf and if not supported we will just open the pdf file instead
+  if (Browser.isIE || Browser.isSafari || Browser.isChromeMobile || Browser.isIosChrome) {
+    try {
+      if (Browser.isIE) console.info('Prntr doesn\'t support PDF printing in Internet Explorer');
+      if (Browser.isChromeMobile || Browser.isIosChrome) console.info('Prntr doesn\'t support PDF printing in Chrome on Mobile');
+      if (Browser.isSafari && !config.base64) console.info('Prntr doesn\'t support PDF printing in Safari');
+      if (Browser.isSafari && !Browser.isIpad && config.base64) console.info('Prntr doesn\'t support PDF Base64 printing in Safari on Desktop or Iphone');
+
+      const hasHref = !!Browser.isChromeMobile;
+      printFallback(config, hasHref);
+      clearPrintFrames(frameId);
       onIncompatibleBrowser?.();
     } catch (error: any) {
       onError?.(error);
@@ -150,7 +183,7 @@ function getPrintFrame({ type, documentTitle, css, frameId }: ExtendedConfig) {
       const styles = Array.isArray(css) ? css : [css];
 
       // Create link tags for each css file
-      styles.forEach(file => {
+      styles.forEach((file) => {
         printFrame.srcdoc += `<link rel="stylesheet" href="${file}">`;
       });
     }

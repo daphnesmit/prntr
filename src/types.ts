@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 export type PrintTypes = 'pdf' | 'html' | 'image' | 'json' | 'raw-html';
 
-interface DefaultConfig {
+interface IDefaultConfig {
   /** Printable type. Available print options are: pdf, html, image, json and raw-html. */
   type?: PrintTypes;
   /** When printing html, image or json, this will be shown as the document title. */
@@ -32,14 +32,14 @@ interface DefaultConfig {
   onPrintDialogClose?: () => void;
   /**
    * When printing pdf, if the browser is not compatible (check browser compatibility table),
-   * the library will open the pdf in a new tab.
+   * the library will open the pdf in a new tab (if possible)
    * This allow you to pass a different pdf document to be opened instead of the original passed in `printable`.
    * This may be useful if you inject javascript in your alternate pdf file.
   */
   onIncompatibleBrowser?: () => void;
 }
 
-export interface PdfConfig extends DefaultConfig {
+export interface IPdfConfig extends IDefaultConfig {
   type: 'pdf';
   /** Document source: pdf */
   printable: string;
@@ -53,13 +53,13 @@ export interface PdfConfig extends DefaultConfig {
   /** If the PDF document is passed as base64 data */
   base64?: boolean;
 }
-export interface ImageConfig extends DefaultConfig {
+export interface IImageConfig extends IDefaultConfig {
   type: 'image';
   /** Document source: image(s) */
   printable: string | string[];
 }
 
-export interface HtmlConfig extends DefaultConfig {
+export interface IHtmlConfig extends IDefaultConfig {
   type: 'html';
   /** Document source: html */
   printable: string;
@@ -82,14 +82,14 @@ export interface HtmlConfig extends DefaultConfig {
    */
   scanStyles?: boolean;
 }
-export interface RawHtmlConfig extends DefaultConfig {
+export interface IRawHtmlConfig extends IDefaultConfig {
   type: 'raw-html';
   /** Document source: raw-html */
   printable: string;
 }
 
 type Property = { field: string; displayName: string; columnSize?: string }
-export interface JsonConfig extends DefaultConfig {
+export interface IJsonConfig extends IDefaultConfig {
   type: 'json';
   /** Json object can be anything */
   printable: any[];
@@ -103,15 +103,16 @@ export interface JsonConfig extends DefaultConfig {
   gridStyle?: string;
 }
 
-export type Config = PdfConfig | HtmlConfig | RawHtmlConfig | ImageConfig | JsonConfig
-export interface BaseConfig extends DefaultConfig {
+export type Config = IPdfConfig | IHtmlConfig | IRawHtmlConfig | IImageConfig | IJsonConfig
+export interface IBaseConfig extends IDefaultConfig {
   /** The id attribute of the frame. default: prntr */
   frameId: string;
 }
 
-export type ExtendedConfig = Config & BaseConfig
+export type ExtendedConfig = Config & IBaseConfig
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface Window {
     prntr: (config: Config) => void;
   }

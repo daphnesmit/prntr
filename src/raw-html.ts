@@ -1,7 +1,7 @@
 import { print } from './print';
-import { RawHtmlConfig } from './types';
+import { IRawHtmlConfig } from './types';
 
-type ExtendedRawHtmlConfig = RawHtmlConfig & {
+export type ExtendedRawHtmlConfig = IRawHtmlConfig & {
   frameId: string;
 }
 function rawHtml (config: ExtendedRawHtmlConfig, printFrame: HTMLIFrameElement) {

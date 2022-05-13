@@ -2,8 +2,8 @@ import { ExtendedConfig } from './types';
 import Browser from './utils/browser';
 import { cleanUp } from './utils/cleanUp';
 
-function print
-(config: ExtendedConfig,
+function print(
+  config: ExtendedConfig,
   printFrame: HTMLIFrameElement,
   printableElement?: HTMLElement,
 ) {
@@ -82,7 +82,7 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
 }
 
 function loadIframeImages(images: HTMLImageElement[]) {
-  const promises = images.map(image => {
+  const promises = images.map((image) => {
     if (!image.src || image.src === window.location.href) return undefined;
     return loadIframeImage(image);
   });
@@ -91,8 +91,9 @@ function loadIframeImages(images: HTMLImageElement[]) {
 }
 
 function loadIframeImage(image: HTMLImageElement) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const pollImage = () => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       !image || typeof image.naturalWidth === 'undefined' || image.naturalWidth === 0 || !image.complete
         ? setTimeout(pollImage, 500)
         : resolve(image);
@@ -115,7 +116,7 @@ function addStyle(style: ExtendedConfig['style'], printDocument: Document) {
 function getPrintDocument(iframe: HTMLIFrameElement): Document | null {
   const printDocumentWindow = (iframe.contentWindow || iframe.contentDocument);
   const printDocument = printDocumentWindow && 'document' in printDocumentWindow
-    ? printDocumentWindow?.document
+    ? printDocumentWindow.document
     : null;
   return printDocument;
 }

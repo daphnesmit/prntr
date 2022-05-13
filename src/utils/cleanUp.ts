@@ -1,17 +1,22 @@
 import { ExtendedConfig } from '../types';
 import Browser from './browser';
 
-function removeIframe(frameId:string) {
+function removeIframe(frameId: string) {
   const iframe = document.getElementById(frameId);
   setTimeout(() => iframe?.remove(), 100);
 }
 
 export function cleanupFast(config: ExtendedConfig) {
-  const { onLoadingEnd, frameId } = config;
-  // Remove Iframe
-  removeIframe(frameId);
+  const { onLoadingStart, onLoadingEnd, printable, frameId } = config;
+
   // Check for a finished loading hook function
   onLoadingEnd?.();
+
+  // If preloading pdf files, clean blob url
+  if (onLoadingStart && typeof printable === 'string') window.URL.revokeObjectURL(printable);
+
+  // Remove Iframe
+  removeIframe(frameId);
 }
 
 export function cleanUp(config: ExtendedConfig) {

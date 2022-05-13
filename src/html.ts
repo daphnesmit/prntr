@@ -1,11 +1,11 @@
 import { print } from './print';
-import { HtmlConfig } from './types';
+import { IHtmlConfig } from './types';
 import { addHeader } from './utils/addHeader';
 
-type ExtendedHtmlConfig = HtmlConfig & {
+export type ExtendedHtmlConfig = IHtmlConfig & {
   frameId: string;
 }
-function html (config: ExtendedHtmlConfig, printFrame: HTMLIFrameElement) {
+function html(config: ExtendedHtmlConfig, printFrame: HTMLIFrameElement) {
   const { printable, header, headerStyle } = config;
 
   // Get the DOM printable element
@@ -55,15 +55,18 @@ export function collectStyles(element: HTMLElement, config: ExtendedHtmlConfig) 
   return elementStyle;
 }
 
-function targetStylesMatch(styles: NonNullable<ExtendedHtmlConfig['targetStyles']>, value: string | string[]): boolean {
+function targetStylesMatch(
+  styles: NonNullable<ExtendedHtmlConfig['targetStyles']>,
+  value: string | string[],
+): boolean {
   for (let i = 0; i < styles.length; i++) {
     if (typeof value === 'object' && value.includes(styles[i])) return true;
   }
   return false;
 }
 
-function cloneElement (element: HTMLElement, config: ExtendedHtmlConfig): HTMLElement {
-  const { ignoreElements = [], scanStyles } = config;
+function cloneElement(element: HTMLElement, config: ExtendedHtmlConfig): HTMLElement {
+  const { ignoreElements = [], scanStyles: shouldScanStyles } = config;
 
   // Clone the main node (if not already inside the recursion process)
   const clone = element.cloneNode();
@@ -83,7 +86,7 @@ function cloneElement (element: HTMLElement, config: ExtendedHtmlConfig): HTMLEl
     clone.appendChild(clonedChild);
   }
   // Get all styling for print element (for nodes of type element only)
-  if (scanStyles && element.nodeType === 1) {
+  if (shouldScanStyles && element.nodeType === 1) {
     (clone as HTMLElement).setAttribute('style', collectStyles(element, config));
   }
 

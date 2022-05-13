@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['./config/defaultEslintConfig'],
+  extends: ['./node_modules/@frntnd/eslint'],
 };

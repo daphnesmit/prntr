@@ -1,12 +1,12 @@
 import { print } from './print';
-import { JsonConfig } from './types';
+import { IJsonConfig } from './types';
 import { addHeader } from './utils/addHeader';
 
-type ExtendedJsonConfig = JsonConfig & {
+export type ExtendedJsonConfig = IJsonConfig & {
   frameId: string;
 }
 function json (config: ExtendedJsonConfig, printFrame: HTMLIFrameElement) {
-  const { printable, repeatTableHeader, properties, header, headerStyle } = config;
+  const { printable, repeatTableHeader: shouldRepeatTableHeader, properties, header, headerStyle } = config;
 
   // Check if we received proper data
   if (typeof printable !== 'object') {
@@ -14,7 +14,7 @@ function json (config: ExtendedJsonConfig, printFrame: HTMLIFrameElement) {
   }
 
   // Validate repeatTableHeader
-  if (typeof repeatTableHeader !== 'boolean') {
+  if (typeof shouldRepeatTableHeader !== 'boolean') {
     throw new Error('Invalid value for repeatTableHeader attribute (JSON).');
   }
 
@@ -49,7 +49,7 @@ function getConfigWithMappedProperties(
   config: ExtendedJsonConfig,
   properties: NonNullable<ExtendedJsonConfig['properties']>,
 ) {
-  const mappedProperties = properties.map(property => ({
+  const mappedProperties = properties.map((property) => ({
     field: typeof property === 'object' ? property.field : property,
     displayName: typeof property === 'object' ? property.displayName : property,
     columnSize: typeof property === 'object' && property.columnSize
