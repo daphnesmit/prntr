@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.15
+
+### Patch Changes
+
+- 24e5b27: ssr fix
+
 ## 2.0.14
 
 ### Patch Changes
