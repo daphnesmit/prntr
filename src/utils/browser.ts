@@ -19,7 +19,7 @@ const Browser = {
   /* Safari */
   isSafari: browserName === 'Safari',
   /* ipad */
-  isIpad: navigator.maxTouchPoints &&
+  isIpad: typeof window !== 'undefined' && navigator.maxTouchPoints &&
   navigator.maxTouchPoints > 2 &&
   navigator.platform.includes('MacIntel'),
   /* iphone */
@@ -27,7 +27,7 @@ const Browser = {
   /* Chrome mobile */
   isChromeMobile: browserName === 'Chrome' && platform === 'mobile',
   /* Chrome on iOs */
-  isIosChrome: browserName === 'Chrome' && navigator.userAgent.includes('CriOS'),
+  isIosChrome: browserName === 'Chrome' && typeof window !== 'undefined' && navigator.userAgent.includes('CriOS'),
 };
 
 export default Browser;
