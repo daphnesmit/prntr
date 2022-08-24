@@ -1,5 +1,18 @@
 # prntr
 
+## 2.0.15
+
+### Patch Changes
+
+- 24e5b27: ssr fix
+
+## 2.0.14
+
+### Patch Changes
+
+- 4e4d6fa: update docs
+- d9b17e2: added base64 blob in new window
+
 ## 2.0.13
 
 ### Patch Changes
