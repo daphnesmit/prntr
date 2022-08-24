@@ -1,5 +1,12 @@
 # prntr
 
+## 2.0.16
+
+### Patch Changes
+
+- fe20cf2: 300ms delay for removal of iframe
+- 8d27eaa: make onPrintDialogClose work in Firefox
+
 ## 2.0.15
 
 ### Patch Changes
