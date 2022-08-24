@@ -16,22 +16,24 @@
 
     function printPdf() {
       prntr({
+        frameId: 'printPdf1',
         printable: '/test.pdf',
         onLoadingStart,
         onLoadingEnd,
         onIncompatibleBrowser: () => console.log('Printing Base64 PDF is not supported in this browser'),
         onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
-        type: 'pdf'
+        type: 'pdf',
       })
     }
     function printPdf2() {
       prntr({
+        frameId: 'printPdf2',
         printable: '/test2.pdf',
         onLoadingStart,
         onLoadingEnd,
         onIncompatibleBrowser: () => console.log('Printing PDF is not supported in this browser'),
         onPrintDialogClose: () => console.log('onPrintDialogClose called!'),
-        type: 'pdf'
+        type: 'pdf',
       })
     }
 
@@ -39,6 +41,7 @@
       fetch('/base64.txt').then(function (response) {
         response.text().then(function (base64) {
           prntr({
+            frameId: 'printPdfBase64',
             printable: base64,
             type: 'pdf',
             base64: true,
@@ -52,6 +55,7 @@
 
     function printHtml() {
       prntr({
+        frameId: 'printHtml',
         printable: 'test',
         type: 'html',
         onLoadingStart,
@@ -63,6 +67,7 @@
 
     function printRawHtml() {
       prntr({
+        frameId: 'printRawHtml',
         printable: `<h1>Prntr Raw HTML Print Test</h1>
       <p class="blueText">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
@@ -77,6 +82,7 @@
       const style = '@page { margin-top: 400px } @media print { h1 { color: blue } }'
 
       prntr({
+        frameId: 'printHtmlCustomStyle',
         printable: 'test',
         type: 'html',
         style: style,
@@ -88,6 +94,7 @@
 
     function printHtmlCss() {
       prntr({
+        frameId: 'printHtmlCss',
         printable: 'test',
         type: 'html',
         css: '/test.css',
@@ -107,6 +114,7 @@
       }
 
       prntr({
+        frameId: 'printJson',
         printable: data,
         properties: [
           {
@@ -139,6 +147,7 @@
       ]
 
       prntr({
+        frameId: 'printStyledJson',
         printable: data,
         properties: ['test1', 'test2'],
         type: 'json',
@@ -159,6 +168,7 @@
       }
 
       prntr({
+        frameId: 'printNestedJson',
         printable: data,
         properties: [
           {
@@ -189,11 +199,16 @@
     }
 
     function printImage() {
-      prntr({ printable: '/test-01.jpg', type: 'image'})
+      prntr({ 
+        frameId: 'printImage',
+        printable: '/test-01.jpg', 
+        type: 'image'
+      })
     }
 
     function printImages() {
       prntr({
+        frameId: 'printImages',
         printable: [
           '/test-01.jpg',
           '/test-02.jpg'
@@ -206,6 +221,7 @@
 
     function printStyledImages() {
       prntr({
+        frameId: 'printStyledImages',
         printable: [
           '/test-01.jpg',
           '/test-02.jpg'
@@ -219,6 +235,7 @@
 
     function printStyledImagesWithStyleSheet() {
       prntr({
+        frameId: 'printStyledImagesWithStyleSheet',
         printable: [
           '/test-01.jpg',
           '/test-02.jpg'
@@ -232,6 +249,7 @@
 
     function printExternalImages() {
       prntr({
+        frameId: 'printExternalImages',
         printable: [
           'https://printjs.crabbly.com/images/print-01-highres.jpg',
           'https://printjs.crabbly.com/images/print-02-highres.jpg',

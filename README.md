@@ -81,6 +81,7 @@ To print a simple pdf:
 
 ```js
 prntr({
+  frameId: 'uniquePdfId',
   printable: '/path-to/document.pdf',
   type: 'pdf'
 })
@@ -90,6 +91,7 @@ To print the contents of a HTML Element:
 
 ```js
 prntr({
+  frameId: 'uniqueId',
   printable: 'elementId', // The id of the DOM Element
   type: 'html'
 })
@@ -99,6 +101,7 @@ To print an HTML string:
 
 ```js
 prntr({
+  frameId: 'uniqueId',
   printable: `<h1>Prntr Raw HTML Print Test</h1>
 <p class="blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
@@ -110,6 +113,7 @@ prntr({
 You can also add custom CSS:
 ```js
 prntr({
+  frameId: 'uniqueId',
   printable: 'elementId', // The id of the DOM Element
   type: 'html',
   css: '/path-to/customStyle.css',
@@ -148,6 +152,7 @@ To print a single image:
 
 ```js
 prntr({
+  frameId: 'uniqueId',
   printable: '/images/some-image-1.jpg',
   type: 'image',
 })
@@ -156,6 +161,7 @@ To print multiple images:
 
 ```js
 prntr({
+  frameId: 'uniqueId',
   printable: [
     '/images/some-image-1.jpg',
     '/images/some-image-2.jpg'
