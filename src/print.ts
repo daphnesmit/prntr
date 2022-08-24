@@ -55,7 +55,9 @@ function performPrint(iframeElement: HTMLIFrameElement, config: ExtendedConfig) 
 
   try {
     // Probably allowing to make this work in Firefox without needing to focus the window again
-    iframeElement.focus();
+    if (!Browser.isFirefox) {
+      iframeElement.focus();
+    }
 
     // If Edge or IE, try catch with execCommand
     if (Browser.isEdgeHTML || Browser.isIE) {
