@@ -3,7 +3,7 @@ import Browser from './browser';
 
 function removeIframe(frameId: string) {
   const iframe = document.getElementById(frameId);
-  setTimeout(() => iframe?.remove(), 100);
+  setTimeout(() => iframe?.remove(), 300);
 }
 
 export function cleanupFast(config: ExtendedConfig) {
