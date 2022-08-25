@@ -15,6 +15,7 @@ const baseConfig: IBaseConfig = {
   type: 'pdf',
   documentTitle: 'Document',
   frameId: 'prntr',
+  iframeRemovalDelay: 300,
   onError: (error: string) => { throw new Error(error); },
 };
 const baseIPdfConfig: Partial<IPdfConfig> = {

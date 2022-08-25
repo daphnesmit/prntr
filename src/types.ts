@@ -16,6 +16,11 @@ interface IDefaultConfig {
   /** The id attribute of the frame. */
   frameId?: string;
   /**
+   * The delay in ms to wait before the iframe gets removed when printing
+   * @default 300
+  */
+  iframeRemovalDelay?: number;
+  /**
    * This allow us to pass one or more css files URLs that should be applied to the html being printed.
    * Value can be a string with a single URL or an array with multiple URLs.
    */

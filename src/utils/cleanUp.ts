@@ -1,13 +1,13 @@
 import { ExtendedConfig } from '../types';
 import Browser from './browser';
 
-function removeIframe(frameId: string) {
+function removeIframe(frameId: string, delay = 300) {
   const iframe = document.getElementById(frameId);
-  setTimeout(() => iframe?.remove(), 300);
+  setTimeout(() => iframe?.remove(), delay);
 }
 
 export function cleanupFast(config: ExtendedConfig) {
-  const { onLoadingStart, onLoadingEnd, printable, frameId } = config;
+  const { onLoadingStart, onLoadingEnd, printable, frameId, iframeRemovalDelay } = config;
 
   // Check for a finished loading hook function
   onLoadingEnd?.();
@@ -16,7 +16,7 @@ export function cleanupFast(config: ExtendedConfig) {
   if (onLoadingStart && typeof printable === 'string') window.URL.revokeObjectURL(printable);
 
   // Remove Iframe
-  removeIframe(frameId);
+  removeIframe(frameId, iframeRemovalDelay);
 }
 
 export function cleanUp(config: ExtendedConfig) {
