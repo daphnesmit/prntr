@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.17
+
+### Patch Changes
+
+- 57fae09: add iframeRemovalDelay config prop
+
 ## 2.0.16
 
 ### Patch Changes
