@@ -20,7 +20,7 @@ export function cleanupFast(config: ExtendedConfig) {
 }
 
 export function cleanUp(config: ExtendedConfig) {
-  const { onLoadingEnd, onLoadingStart, onPrintDialogClose, frameId, printable } = config;
+  const { onLoadingEnd, onLoadingStart, onPrintDialogClose, frameId, printable, iframeRemovalDelay } = config;
 
   // Check for a finished loading hook function
   onLoadingEnd?.();
@@ -43,7 +43,7 @@ export function cleanUp(config: ExtendedConfig) {
     onPrintDialogClose?.();
 
     // Remove iframe from the DOM
-    removeIframe(frameId);
+    removeIframe(frameId, iframeRemovalDelay);
   };
 
   window.addEventListener(event, handler);
