@@ -1,5 +1,11 @@
 # prntr
 
+## 2.0.18
+
+### Patch Changes
+
+- 952de08: Added forgotten iframeRemovalDelay on handler in cleanup function
+
 ## 2.0.17
 
 ### Patch Changes
